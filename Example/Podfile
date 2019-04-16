@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AlignmentControl_Example' do
+  pod 'AlignmentControl', :path => '../'
+
+  target 'AlignmentControl_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
