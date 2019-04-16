@@ -27,7 +27,7 @@ pod 'AlignmentControl'
 
 ## Author
 
-tularovbeslan@gmail.com, tularovbeslan@gmail.com
+tularovbeslan@gmail.com
 
 ## License
 
