@@ -1,0 +1,6 @@
+framework module Pods_AlignmentControl_Tests {
+  umbrella header "Pods-AlignmentControl_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

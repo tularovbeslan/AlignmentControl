@@ -29,10 +29,10 @@
 
 /* Begin PBXFileReference section */
 		1E4F5322B5EC36C0A4F4696B /* Pods-AlignmentControl_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlignmentControl_Tests.release.xcconfig"; path = "Target Support Files/Pods-AlignmentControl_Tests/Pods-AlignmentControl_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		21161852E81EDC9F1EBDCF31 /* AlignmentControl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = AlignmentControl.podspec; path = ../AlignmentControl.podspec; sourceTree = "<group>"; };
+		21161852E81EDC9F1EBDCF31 /* AlignmentControl.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AlignmentControl.podspec; path = ../AlignmentControl.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2A60631810A67C62DE4962C2 /* Pods_AlignmentControl_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlignmentControl_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		461CA1B4A1B7A268CB62E914 /* Pods-AlignmentControl_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlignmentControl_Example.debug.xcconfig"; path = "Target Support Files/Pods-AlignmentControl_Example/Pods-AlignmentControl_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		562F9B5E77AAE6E543294F75 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		562F9B5E77AAE6E543294F75 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5ED01BE5FDD5D26FDDDA25F7 /* Pods-AlignmentControl_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlignmentControl_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AlignmentControl_Tests/Pods-AlignmentControl_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AlignmentControl_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlignmentControl_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6901EC955A8BA2F524D8486B /* Pods-AlignmentControl_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlignmentControl_Example.release.xcconfig"; path = "Target Support Files/Pods-AlignmentControl_Example/Pods-AlignmentControl_Example.release.xcconfig"; sourceTree = "<group>"; };
-		B6CDB64C91389FFF5BDB8A8F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B6CDB64C91389FFF5BDB8A8F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E9AC05FA74A8710688C2E0F1 /* Pods_AlignmentControl_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlignmentControl_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -156,7 +156,6 @@
 				5ED01BE5FDD5D26FDDDA25F7 /* Pods-AlignmentControl_Tests.debug.xcconfig */,
 				1E4F5322B5EC36C0A4F4696B /* Pods-AlignmentControl_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -213,6 +212,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = MTVD7A69KL;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -227,6 +227,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -482,7 +483,9 @@
 			baseConfigurationReference = 461CA1B4A1B7A268CB62E914 /* Pods-AlignmentControl_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MTVD7A69KL;
 				INFOPLIST_FILE = AlignmentControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -497,7 +500,9 @@
 			baseConfigurationReference = 6901EC955A8BA2F524D8486B /* Pods-AlignmentControl_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = MTVD7A69KL;
 				INFOPLIST_FILE = AlignmentControl/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";

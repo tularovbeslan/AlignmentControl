@@ -1,0 +1,801 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1351DB9B61C4CD0858FE59FA013D1B43 /* AlignmentControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E58ACABE70E0D5D9D711C092F3D83357 /* AlignmentControl-dummy.m */; };
+		28DCD295D7867CDDC8AE633803BA80F8 /* Pods-AlignmentControl_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC68062935618F83643B308886F4C75 /* Pods-AlignmentControl_Tests-dummy.m */; };
+		3C428CB40E447799317941F0640A9D51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		3F0FD143F16D8E2FBA97B8286E7B50FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		57E6523E2266461700524487 /* AlingmentItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6523D2266461700524487 /* AlingmentItemView.swift */; };
+		57E652402266462D00524487 /* AlingmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6523F2266462D00524487 /* AlingmentView.swift */; };
+		61A535E3A0811D92677773F772B63205 /* Pods-AlignmentControl_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BED471D705955CA97335A123CE18D0D /* Pods-AlignmentControl_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		747F36B15710889CE3074A87245E5657 /* AlignmentControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30B1C193D37A7C3F26BF9A5AD0BD5F76 /* AlignmentControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A6BE426FCEBA7F0088AABD758466E96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		CB8F8EAE22C6CBE975CE9E24E0B68567 /* Pods-AlignmentControl_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCAE502F0231E8A943106C88DE27FF /* Pods-AlignmentControl_Example-dummy.m */; };
+		D8A1B900181956426AF275C13C4BC358 /* Pods-AlignmentControl_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04911C8D196C1FA3BBD07BD0EA6FE3D4 /* Pods-AlignmentControl_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9684DC380D38DCDC6BB5017077DF309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 423616224ED35A532DD753372A65D60F;
+			remoteInfo = AlignmentControl;
+		};
+		D1F3F63199D2F9971729672FDC7F19D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7322C8ADA4E03E6E50338D072882CB4;
+			remoteInfo = "Pods-AlignmentControl_Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04911C8D196C1FA3BBD07BD0EA6FE3D4 /* Pods-AlignmentControl_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlignmentControl_Tests-umbrella.h"; sourceTree = "<group>"; };
+		0BCCAE502F0231E8A943106C88DE27FF /* Pods-AlignmentControl_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlignmentControl_Example-dummy.m"; sourceTree = "<group>"; };
+		0F72908115B9F02BF311310E1E83EC69 /* Pods-AlignmentControl_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlignmentControl_Tests-Info.plist"; sourceTree = "<group>"; };
+		153CF3DA915AA67342F0CA27F3006484 /* AlignmentControl-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AlignmentControl-Info.plist"; sourceTree = "<group>"; };
+		30B1C193D37A7C3F26BF9A5AD0BD5F76 /* AlignmentControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlignmentControl-umbrella.h"; sourceTree = "<group>"; };
+		36241A954D02914F640CC59953684F3C /* Pods-AlignmentControl_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlignmentControl_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		3F56203017D023D59D65BADC9F18530E /* Pods-AlignmentControl_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlignmentControl_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		462B44798392476F61816E05593CE706 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5487144011D2D37B590C34AA5EE9EC89 /* Pods-AlignmentControl_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlignmentControl_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		57E6523D2266461700524487 /* AlingmentItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlingmentItemView.swift; sourceTree = "<group>"; };
+		57E6523F2266462D00524487 /* AlingmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlingmentView.swift; sourceTree = "<group>"; };
+		66C15A60629494A511EC629DB5128747 /* Pods-AlignmentControl_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlignmentControl_Tests.modulemap"; sourceTree = "<group>"; };
+		6881DB2A019442E52A2DD83FDD70CC9C /* AlignmentControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlignmentControl-prefix.pch"; sourceTree = "<group>"; };
+		6DE09246FA19EC168F603B9925F092FD /* Pods-AlignmentControl_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlignmentControl_Example-frameworks.sh"; sourceTree = "<group>"; };
+		6F5B38D9FDA647A31A8518F9F76B398D /* Pods-AlignmentControl_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlignmentControl_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		794D504037330CE3A42B782178FA053C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7BED471D705955CA97335A123CE18D0D /* Pods-AlignmentControl_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlignmentControl_Example-umbrella.h"; sourceTree = "<group>"; };
+		968CDC67B13E51DE14B56FC8C2BC651B /* AlignmentControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlignmentControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DE57CE7CF132956146E636D0532D568 /* Pods-AlignmentControl_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlignmentControl_Example-Info.plist"; sourceTree = "<group>"; };
+		9FE53FA08E1B95F5DA1501E73C6B515C /* AlignmentControl.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = AlignmentControl.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A6B59BD7FC6BE3466131313B8653BF87 /* Pods-AlignmentControl_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlignmentControl_Example.modulemap"; sourceTree = "<group>"; };
+		B5DF2F35E2446FBD4E7B986088A3FC8A /* AlignmentControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlignmentControl.xcconfig; sourceTree = "<group>"; };
+		BAFC3C606E81ADF1B4E1BC3377279DD8 /* Pods-AlignmentControl_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlignmentControl_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BD42A73B17B1407E9EA2B280D3E73BCC /* Pods-AlignmentControl_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlignmentControl_Example.release.xcconfig"; sourceTree = "<group>"; };
+		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CB5948E7230FB995E67C768B73DB1EA1 /* AlignmentControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlignmentControl.modulemap; sourceTree = "<group>"; };
+		CDC68062935618F83643B308886F4C75 /* Pods-AlignmentControl_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlignmentControl_Tests-dummy.m"; sourceTree = "<group>"; };
+		D9537DF7868BE17008504622927EE935 /* Pods-AlignmentControl_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlignmentControl_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		DE21009A6A5A5AEABB598DBDBDBBCBDA /* Pods_AlignmentControl_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlignmentControl_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E58ACABE70E0D5D9D711C092F3D83357 /* AlignmentControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlignmentControl-dummy.m"; sourceTree = "<group>"; };
+		E861DD061C77F9F2DDD409795803B3A2 /* Pods_AlignmentControl_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlignmentControl_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F92ACD51D9824865A2E99FF4C3D27FE1 /* Pods-AlignmentControl_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlignmentControl_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10D20CB27F423DEC8EDD58A487947228 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F0FD143F16D8E2FBA97B8286E7B50FC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F61C4B989E911652576CFDFF9CC667B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A6BE426FCEBA7F0088AABD758466E96 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB3C007BC11A0259A0EBED0FE674352 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C428CB40E447799317941F0640A9D51 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09D9BB76EDBDD5E41E02C74046976858 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				9FE53FA08E1B95F5DA1501E73C6B515C /* AlignmentControl.podspec */,
+				794D504037330CE3A42B782178FA053C /* LICENSE */,
+				462B44798392476F61816E05593CE706 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		181DD1C82ABAE2A9BCB953430FC2BAC2 /* Pods-AlignmentControl_Example */ = {
+			isa = PBXGroup;
+			children = (
+				A6B59BD7FC6BE3466131313B8653BF87 /* Pods-AlignmentControl_Example.modulemap */,
+				3F56203017D023D59D65BADC9F18530E /* Pods-AlignmentControl_Example-acknowledgements.markdown */,
+				F92ACD51D9824865A2E99FF4C3D27FE1 /* Pods-AlignmentControl_Example-acknowledgements.plist */,
+				0BCCAE502F0231E8A943106C88DE27FF /* Pods-AlignmentControl_Example-dummy.m */,
+				6DE09246FA19EC168F603B9925F092FD /* Pods-AlignmentControl_Example-frameworks.sh */,
+				9DE57CE7CF132956146E636D0532D568 /* Pods-AlignmentControl_Example-Info.plist */,
+				7BED471D705955CA97335A123CE18D0D /* Pods-AlignmentControl_Example-umbrella.h */,
+				6F5B38D9FDA647A31A8518F9F76B398D /* Pods-AlignmentControl_Example.debug.xcconfig */,
+				BD42A73B17B1407E9EA2B280D3E73BCC /* Pods-AlignmentControl_Example.release.xcconfig */,
+			);
+			name = "Pods-AlignmentControl_Example";
+			path = "Target Support Files/Pods-AlignmentControl_Example";
+			sourceTree = "<group>";
+		};
+		1AF492044EAEAC6D027635CB18C07941 /* AlignmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				57E6523C2266435C00524487 /* Classes */,
+				57E6523B2266435000524487 /* Assets */,
+				09D9BB76EDBDD5E41E02C74046976858 /* Pod */,
+				3444ABC1935576F4FCEB5563FA2EF474 /* Support Files */,
+			);
+			name = AlignmentControl;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		3444ABC1935576F4FCEB5563FA2EF474 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CB5948E7230FB995E67C768B73DB1EA1 /* AlignmentControl.modulemap */,
+				B5DF2F35E2446FBD4E7B986088A3FC8A /* AlignmentControl.xcconfig */,
+				E58ACABE70E0D5D9D711C092F3D83357 /* AlignmentControl-dummy.m */,
+				153CF3DA915AA67342F0CA27F3006484 /* AlignmentControl-Info.plist */,
+				6881DB2A019442E52A2DD83FDD70CC9C /* AlignmentControl-prefix.pch */,
+				30B1C193D37A7C3F26BF9A5AD0BD5F76 /* AlignmentControl-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/AlignmentControl";
+			sourceTree = "<group>";
+		};
+		47C9D7C1AF81DEBBFCFCE9EDE93BD7F9 /* Pods-AlignmentControl_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				66C15A60629494A511EC629DB5128747 /* Pods-AlignmentControl_Tests.modulemap */,
+				BAFC3C606E81ADF1B4E1BC3377279DD8 /* Pods-AlignmentControl_Tests-acknowledgements.markdown */,
+				D9537DF7868BE17008504622927EE935 /* Pods-AlignmentControl_Tests-acknowledgements.plist */,
+				CDC68062935618F83643B308886F4C75 /* Pods-AlignmentControl_Tests-dummy.m */,
+				0F72908115B9F02BF311310E1E83EC69 /* Pods-AlignmentControl_Tests-Info.plist */,
+				04911C8D196C1FA3BBD07BD0EA6FE3D4 /* Pods-AlignmentControl_Tests-umbrella.h */,
+				5487144011D2D37B590C34AA5EE9EC89 /* Pods-AlignmentControl_Tests.debug.xcconfig */,
+				36241A954D02914F640CC59953684F3C /* Pods-AlignmentControl_Tests.release.xcconfig */,
+			);
+			name = "Pods-AlignmentControl_Tests";
+			path = "Target Support Files/Pods-AlignmentControl_Tests";
+			sourceTree = "<group>";
+		};
+		57E6523B2266435000524487 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Assets;
+			path = AlignmentControl/Assets;
+			sourceTree = "<group>";
+		};
+		57E6523C2266435C00524487 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				57E6523D2266461700524487 /* AlingmentItemView.swift */,
+				57E6523F2266462D00524487 /* AlingmentView.swift */,
+			);
+			name = Classes;
+			path = AlignmentControl/Classes;
+			sourceTree = "<group>";
+		};
+		9B055D0CFEA43187E72B03DED11F5662 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		9CB3C424175A44F8B73374A374EFDE3E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1AF492044EAEAC6D027635CB18C07941 /* AlignmentControl */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		B444973C0F083F30B972411442D3F961 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				968CDC67B13E51DE14B56FC8C2BC651B /* AlignmentControl.framework */,
+				DE21009A6A5A5AEABB598DBDBDBBCBDA /* Pods_AlignmentControl_Example.framework */,
+				E861DD061C77F9F2DDD409795803B3A2 /* Pods_AlignmentControl_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C331EDBAA8DB4F6C5D4566F40882D3C1 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				181DD1C82ABAE2A9BCB953430FC2BAC2 /* Pods-AlignmentControl_Example */,
+				47C9D7C1AF81DEBBFCFCE9EDE93BD7F9 /* Pods-AlignmentControl_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				9CB3C424175A44F8B73374A374EFDE3E /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				B444973C0F083F30B972411442D3F961 /* Products */,
+				C331EDBAA8DB4F6C5D4566F40882D3C1 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9B055D0CFEA43187E72B03DED11F5662 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5CF03D2807AA9CEF7EE53BE8CDFE1A67 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				747F36B15710889CE3074A87245E5657 /* AlignmentControl-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		963C77DE8DE2632B340480CBEE4ACB34 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61A535E3A0811D92677773F772B63205 /* Pods-AlignmentControl_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6BA8BAA799EB5538FC9D9AB02B40B73 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A1B900181956426AF275C13C4BC358 /* Pods-AlignmentControl_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		423616224ED35A532DD753372A65D60F /* AlignmentControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 847974B302AE36E9E069BC44D71CB7BB /* Build configuration list for PBXNativeTarget "AlignmentControl" */;
+			buildPhases = (
+				5CF03D2807AA9CEF7EE53BE8CDFE1A67 /* Headers */,
+				7F4C4945181D1D7EEC3B0A5925E8E53A /* Sources */,
+				FEB3C007BC11A0259A0EBED0FE674352 /* Frameworks */,
+				0EE4442D1E6FEC6D9642753760ABAFC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlignmentControl;
+			productName = AlignmentControl;
+			productReference = 968CDC67B13E51DE14B56FC8C2BC651B /* AlignmentControl.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B7322C8ADA4E03E6E50338D072882CB4 /* Pods-AlignmentControl_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDB9E13B8CDCDEA670B09B129D7AC3BC /* Build configuration list for PBXNativeTarget "Pods-AlignmentControl_Example" */;
+			buildPhases = (
+				963C77DE8DE2632B340480CBEE4ACB34 /* Headers */,
+				7D1F7809850C203163B4F37AB336E844 /* Sources */,
+				10D20CB27F423DEC8EDD58A487947228 /* Frameworks */,
+				01AA09AF9D8305E048CC21B75E03AB3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F013AAFF776F03E8EC4A61EFD814300 /* PBXTargetDependency */,
+			);
+			name = "Pods-AlignmentControl_Example";
+			productName = "Pods-AlignmentControl_Example";
+			productReference = DE21009A6A5A5AEABB598DBDBDBBCBDA /* Pods_AlignmentControl_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F96F5DB9D28CB5D2E817D7117FB28AC5 /* Pods-AlignmentControl_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5612AA1EFCEFCA0EEC2483AB7FFDFB1 /* Build configuration list for PBXNativeTarget "Pods-AlignmentControl_Tests" */;
+			buildPhases = (
+				B6BA8BAA799EB5538FC9D9AB02B40B73 /* Headers */,
+				EB72DE8DCF86B74C178B27FF0BDF37CB /* Sources */,
+				F61C4B989E911652576CFDFF9CC667B0 /* Frameworks */,
+				4617307BD190DAAF08DA107E1778E9B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA2018FD2C6ED8508CC26198955E9C4B /* PBXTargetDependency */,
+			);
+			name = "Pods-AlignmentControl_Tests";
+			productName = "Pods-AlignmentControl_Tests";
+			productReference = E861DD061C77F9F2DDD409795803B3A2 /* Pods_AlignmentControl_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					423616224ED35A532DD753372A65D60F = {
+						DevelopmentTeam = MTVD7A69KL;
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = B444973C0F083F30B972411442D3F961 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				423616224ED35A532DD753372A65D60F /* AlignmentControl */,
+				B7322C8ADA4E03E6E50338D072882CB4 /* Pods-AlignmentControl_Example */,
+				F96F5DB9D28CB5D2E817D7117FB28AC5 /* Pods-AlignmentControl_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01AA09AF9D8305E048CC21B75E03AB3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EE4442D1E6FEC6D9642753760ABAFC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4617307BD190DAAF08DA107E1778E9B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D1F7809850C203163B4F37AB336E844 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB8F8EAE22C6CBE975CE9E24E0B68567 /* Pods-AlignmentControl_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F4C4945181D1D7EEC3B0A5925E8E53A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1351DB9B61C4CD0858FE59FA013D1B43 /* AlignmentControl-dummy.m in Sources */,
+				57E652402266462D00524487 /* AlingmentView.swift in Sources */,
+				57E6523E2266461700524487 /* AlingmentItemView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB72DE8DCF86B74C178B27FF0BDF37CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28DCD295D7867CDDC8AE633803BA80F8 /* Pods-AlignmentControl_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F013AAFF776F03E8EC4A61EFD814300 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AlignmentControl;
+			target = 423616224ED35A532DD753372A65D60F /* AlignmentControl */;
+			targetProxy = B9684DC380D38DCDC6BB5017077DF309 /* PBXContainerItemProxy */;
+		};
+		DA2018FD2C6ED8508CC26198955E9C4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-AlignmentControl_Example";
+			target = B7322C8ADA4E03E6E50338D072882CB4 /* Pods-AlignmentControl_Example */;
+			targetProxy = D1F3F63199D2F9971729672FDC7F19D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08F08B7C8BC2E95AB0B1CFBA3DA76ADF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5DF2F35E2446FBD4E7B986088A3FC8A /* AlignmentControl.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MTVD7A69KL;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AlignmentControl/AlignmentControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AlignmentControl/AlignmentControl-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AlignmentControl/AlignmentControl.modulemap";
+				PRODUCT_MODULE_NAME = AlignmentControl;
+				PRODUCT_NAME = AlignmentControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		13CC288B6372754ED612E902F3D9C23B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36241A954D02914F640CC59953684F3C /* Pods-AlignmentControl_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AlignmentControl_Tests/Pods-AlignmentControl_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AlignmentControl_Tests/Pods-AlignmentControl_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		27DFCD07BBB3EB1FD143EFD55BCBFE7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5DF2F35E2446FBD4E7B986088A3FC8A /* AlignmentControl.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AlignmentControl/AlignmentControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AlignmentControl/AlignmentControl-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AlignmentControl/AlignmentControl.modulemap";
+				PRODUCT_MODULE_NAME = AlignmentControl;
+				PRODUCT_NAME = AlignmentControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9F0948D45A99793BE4A12CBE470985B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD42A73B17B1407E9EA2B280D3E73BCC /* Pods-AlignmentControl_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AlignmentControl_Example/Pods-AlignmentControl_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AlignmentControl_Example/Pods-AlignmentControl_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A86DFD148208F3368A06319A327D4F81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F5B38D9FDA647A31A8518F9F76B398D /* Pods-AlignmentControl_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AlignmentControl_Example/Pods-AlignmentControl_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AlignmentControl_Example/Pods-AlignmentControl_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AB4D69770D8ACE3A05E80BB3502666F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		AC8C22FBD3330E6BC252B8DF290B9CD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5487144011D2D37B590C34AA5EE9EC89 /* Pods-AlignmentControl_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AlignmentControl_Tests/Pods-AlignmentControl_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AlignmentControl_Tests/Pods-AlignmentControl_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F232B5ECA11A71BFA199A229B323F454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB4D69770D8ACE3A05E80BB3502666F6 /* Debug */,
+				F232B5ECA11A71BFA199A229B323F454 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		847974B302AE36E9E069BC44D71CB7BB /* Build configuration list for PBXNativeTarget "AlignmentControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08F08B7C8BC2E95AB0B1CFBA3DA76ADF /* Debug */,
+				27DFCD07BBB3EB1FD143EFD55BCBFE7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5612AA1EFCEFCA0EEC2483AB7FFDFB1 /* Build configuration list for PBXNativeTarget "Pods-AlignmentControl_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC8C22FBD3330E6BC252B8DF290B9CD9 /* Debug */,
+				13CC288B6372754ED612E902F3D9C23B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BDB9E13B8CDCDEA670B09B129D7AC3BC /* Build configuration list for PBXNativeTarget "Pods-AlignmentControl_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A86DFD148208F3368A06319A327D4F81 /* Debug */,
+				9F0948D45A99793BE4A12CBE470985B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

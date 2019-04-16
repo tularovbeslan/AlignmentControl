@@ -1,0 +1,22 @@
+{
+  "name": "AlignmentControl",
+  "version": "0.1.0",
+  "summary": "A short description of AlignmentControl.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/tularovbeslan@gmail.com/AlignmentControl",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "tularovbeslan@gmail.com": "tularovbeslan@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/tularovbeslan@gmail.com/AlignmentControl.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AlignmentControl/Classes/**/*"
+}

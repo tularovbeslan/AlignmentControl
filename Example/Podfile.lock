@@ -1,0 +1,16 @@
+PODS:
+  - AlignmentControl (0.1.0)
+
+DEPENDENCIES:
+  - AlignmentControl (from `../`)
+
+EXTERNAL SOURCES:
+  AlignmentControl:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AlignmentControl: 3d11506700b44287d0ae2897e1f52d454bfdfe60
+
+PODFILE CHECKSUM: 79ce38103974628862b4fce03fcb0263f37ab7b6
+
+COCOAPODS: 1.6.1

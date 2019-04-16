@@ -1,0 +1,6 @@
+framework module AlignmentControl {
+  umbrella header "AlignmentControl-umbrella.h"
+
+  export *
+  module * { export * }
+}
