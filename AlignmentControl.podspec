@@ -32,5 +32,4 @@ Alignment Control is a component to align top, middle, bottom, left, center, rig
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'AlignmentControl/Classes/**/*'
-  s.resources =  'AlignmentControl/Assets/*.xcassets'
 end
