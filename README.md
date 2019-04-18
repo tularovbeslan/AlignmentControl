@@ -1,6 +1,7 @@
 # AlignmentControl
 
-![image](https://user-images.githubusercontent.com/4906243/56395734-7878ed80-6244-11e9-9a41-847de8642882.png)
+![image](https://user-images.githubusercontent.com/4906243/56395781-b0803080-6244-11e9-91a4-408d32848465.png)
+
 
 [![Twitter](https://img.shields.io/badge/twitter-@JiromTomson-blue.svg?style=flat
 )](https://twitter.com/JiromTomson)
