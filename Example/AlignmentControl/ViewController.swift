@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import AlignmentControl
 
 class ViewController: UIViewController {
 
+	@IBOutlet weak var alignView: AlingmentView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+
+		alignView.setBackgroundImage(UIImage(named: "Group"))
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

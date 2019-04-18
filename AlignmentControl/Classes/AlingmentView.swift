@@ -7,22 +7,47 @@
 
 import UIKit
 
-class AlingmentView: UIView {
+open class AlingmentView: UIView {
 
 	var alignmentModes: [AlignmentMode] = [.Left, .Center, .Right, .Top, .Middle, .Bottom]
 
-	override func awakeFromNib() {
+	fileprivate var backgroundImage: UIImageView = {
+
+		let imageView: UIImageView = UIImageView()
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+		return imageView
+	}()
+
+	open func setBackgroundImage(_ image: UIImage?) {
+		backgroundImage.image = image
+	}
+
+	override open func awakeFromNib() {
 		super.awakeFromNib()
 
+		addSubview(backgroundImage)
+		setupBackgroundImageConstraints()
 		setupItems()
 	}
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
+
+		addSubview(backgroundImage)
+		setupBackgroundImageConstraints()
+		setupItems()
 	}
 
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+	}
+
+	fileprivate func setupBackgroundImageConstraints() {
+
+		backgroundImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		backgroundImage.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		backgroundImage.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 	}
 
 	fileprivate func setupItems() {
