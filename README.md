@@ -1,4 +1,4 @@
-# AlignmentControl
+# AlignmentControl is a component for alignment
 
 ![image](https://user-images.githubusercontent.com/4906243/56395781-b0803080-6244-11e9-91a4-408d32848465.png)
 
