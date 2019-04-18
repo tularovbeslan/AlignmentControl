@@ -54,12 +54,12 @@ open class AlingmentView: UIView {
 
 		for (index, alignmentMode) in alignmentModes.enumerated() {
 
-			let itemWidth: CGFloat = (frame.width / CGFloat(alignmentModes.count)) * 0.8
+			let itemWidth: CGFloat = (frame.width / CGFloat(alignmentModes.count))
 
-			let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.8
+			let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.80
 
-			let padding =  (frame.width - (length * CGFloat(alignmentModes.count))) / CGFloat(alignmentModes.count + 1)
-			let offset: CGFloat = ((padding + length) * CGFloat(index)) + padding
+			let padding =  (frame.width - (length * CGFloat(alignmentModes.count))) / CGFloat(alignmentModes.count)
+			let offset: CGFloat = ((padding + length) * CGFloat(index)) + (padding / 2)
 
 			let width: CGFloat = length
 			let height: CGFloat = length
@@ -73,7 +73,7 @@ open class AlingmentView: UIView {
 			item.heightAnchor.constraint(equalToConstant: height).isActive = true
 			item.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
-			item.backgroundColor = .white
+			item.backgroundColor = .clear
 		}
 	}
 }
