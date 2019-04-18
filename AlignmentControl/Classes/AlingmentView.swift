@@ -31,17 +31,21 @@ class AlingmentView: UIView {
 
 			let fullWidth: CGFloat = frame.width / CGFloat(alignmentModes.count)
 			let fullHeight: CGFloat = frame.height * 0.6
-
 			let padding: CGFloat = (frame.width * 0.2) / CGFloat(alignmentModes.count)
 			let offset: CGFloat = (fullWidth * CGFloat(index)) + (padding / 2)
 			let width: CGFloat = (fullWidth - padding)
 			let height: CGFloat = fullHeight
 
 			let item = AlingmentItemView(alignmentMode)
-			item.frame.origin = CGPoint(x: offset, y: 10)
-			item.frame.size = CGSize(width: width, height: height)
-			item.backgroundColor = .white
 			addSubview(item)
+
+			item.translatesAutoresizingMaskIntoConstraints = false
+			item.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
+			item.widthAnchor.constraint(equalToConstant: width).isActive = true
+			item.heightAnchor.constraint(equalToConstant: height).isActive = true
+			item.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+
+			item.backgroundColor = .white
 		}
 	}
 }

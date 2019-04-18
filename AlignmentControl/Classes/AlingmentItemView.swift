@@ -28,6 +28,60 @@ class AlingmentItemView: UIView {
 	var middleWardPath: UIBezierPath!
 	var shortWardPath: UIBezierPath!
 
+	var longWardWidth: CGFloat {
+
+		switch alignmentMode {
+		case .Left, .Center, .Right: return frame.width * 0.10
+		case .Top, .Middle, .Bottom: return frame.width
+		}
+	}
+
+	var longWardHeight: CGFloat {
+
+		switch alignmentMode {
+		case .Left, .Center, .Right: return frame.height
+		case .Top, .Middle, .Bottom: return frame.height * 0.10
+		}
+	}
+
+	var longWardRadius: CGFloat { return longWardWidth * 0.5 }
+
+	var middleWardWidth: CGFloat {
+
+		switch alignmentMode {
+		case .Left, .Center, .Right: return frame.width * 0.60
+		case .Top, .Middle, .Bottom: return frame.height / 5
+		}
+	}
+
+	var middleWardHeight: CGFloat {
+
+		switch alignmentMode {
+		case .Left, .Center, .Right: return frame.height / 5
+		case .Top, .Middle, .Bottom: return frame.height * 0.60
+		}
+	}
+
+	var middleWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
+
+	var shortWardWidth: CGFloat {
+
+		switch alignmentMode {
+		case .Left, .Center, .Right: return frame.width * 0.40
+		case .Top, .Middle, .Bottom: return frame.height / 5
+		}
+	}
+
+	var shortWardHeight: CGFloat {
+
+		switch alignmentMode {
+		case .Left, .Center, .Right: return frame.height / 5
+		case .Top, .Middle, .Bottom: return frame.height * 0.40
+		}
+	}
+
+	var shortWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
@@ -58,30 +112,54 @@ class AlingmentItemView: UIView {
 
 	func drawLeft(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
-		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.10417 + 0.5), y: frame.minY + fastFloor(frame.height * 0.00000 + 0.5), width: fastFloor(frame.width * 0.18750 + 0.5) - fastFloor(frame.width * 0.10417 + 0.5), height: fastFloor(frame.height * 1.00000 + 0.5) - fastFloor(frame.height * 0.00000 + 0.5)), cornerRadius: (fastFloor(frame.width * 0.18750 + 0.5) - fastFloor(frame.width * 0.10417 + 0.5) * 0.5))
+		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.10,
+														y: 0,
+														width: longWardWidth,
+														height: longWardHeight),
+									cornerRadius: longWardRadius)
 		colorOfWards.setFill()
 		longWardPath.fill()
 
-		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.29167 + 0.5), y: frame.minY + fastFloor(frame.height * 0.25000 + 0.5), width: fastFloor(frame.width * 0.89583 + 0.5) - fastFloor(frame.width * 0.29167 + 0.5), height: fastFloor(frame.height * 0.41667 + 0.5) - fastFloor(frame.height * 0.25000 + 0.5)), cornerRadius: (fastFloor(frame.height * 0.41667 + 0.5) - fastFloor(frame.height * 0.25000 + 0.5)) * 0.3)
+		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.3,
+														  y: (frame.height / 6) * 1.4,
+														  width: middleWardWidth,
+														  height: middleWardHeight),
+									  cornerRadius: middleWardRadius)
 		colorOfWards.setFill()
 		middleWardPath.fill()
 
-		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.29167 + 0.5), y: frame.minY + fastFloor(frame.height * 0.58333 + 0.5), width: fastFloor(frame.width * 0.72917 + 0.5) - fastFloor(frame.width * 0.29167 + 0.5), height: fastFloor(frame.height * 0.75000 + 0.5) - fastFloor(frame.height * 0.58333 + 0.5)), cornerRadius: (fastFloor(frame.height * 0.75000 + 0.5) - fastFloor(frame.height * 0.58333 + 0.5)) * 0.3)
+		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.3,
+														 y: (frame.height / 6) * 3.4,
+														 width: shortWardWidth,
+														 height: shortWardHeight),
+									 cornerRadius: shortWardRadius)
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
 
 	func drawCenter(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
-		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.45833 + 0.5), y: frame.minY + fastFloor(frame.height * 0.00000 + 0.5), width: fastFloor(frame.width * 0.54167 + 0.5) - fastFloor(frame.width * 0.45833 + 0.5), height: fastFloor(frame.height * 1.00000 + 0.5) - fastFloor(frame.height * 0.00000 + 0.5)), cornerRadius: 1)
+		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.45,
+														y: 0,
+														width: longWardWidth,
+														height: longWardHeight),
+									cornerRadius: longWardRadius)
 		colorOfWards.setFill()
 		longWardPath.fill()
 
-		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.20833 + 0.5), y: frame.minY + fastFloor(frame.height * 0.25000 + 0.5), width: fastFloor(frame.width * 0.81250 + 0.5) - fastFloor(frame.width * 0.20833 + 0.5), height: fastFloor(frame.height * 0.41667 + 0.5) - fastFloor(frame.height * 0.25000 + 0.5)), cornerRadius: 1)
+		middleWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width - middleWardWidth) / 2,
+														  y: (frame.height / 6) * 1.4,
+														  width: middleWardWidth,
+														  height: middleWardHeight),
+									  cornerRadius: middleWardRadius)
 		colorOfWards.setFill()
 		middleWardPath.fill()
 
-		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.29167 + 0.5), y: frame.minY + fastFloor(frame.height * 0.58333 + 0.5), width: fastFloor(frame.width * 0.72917 + 0.5) - fastFloor(frame.width * 0.29167 + 0.5), height: fastFloor(frame.height * 0.75000 + 0.5) - fastFloor(frame.height * 0.58333 + 0.5)), cornerRadius: 1)
+		shortWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width - shortWardWidth) / 2,
+														 y: (frame.height / 6) * 3.4,
+														 width: shortWardWidth,
+														 height: shortWardHeight),
+									 cornerRadius: shortWardRadius)
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
@@ -89,15 +167,27 @@ class AlingmentItemView: UIView {
 
 	func drawRight(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
-		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.83333 + 0.5), y: frame.minY + fastFloor(frame.height * 0.00000 + 0.5), width: fastFloor(frame.width * 0.91667 + 0.5) - fastFloor(frame.width * 0.83333 + 0.5), height: fastFloor(frame.height * 1.00000 + 0.5) - fastFloor(frame.height * 0.00000 + 0.5)), cornerRadius: 1)
+		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.80,
+														y: 0,
+														width: longWardWidth,
+														height: longWardHeight),
+									cornerRadius: longWardRadius)
 		colorOfWards.setFill()
 		longWardPath.fill()
 
-		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.10417 + 0.5), y: frame.minY + fastFloor(frame.height * 0.25000 + 0.5), width: fastFloor(frame.width * 0.70833 + 0.5) - fastFloor(frame.width * 0.10417 + 0.5), height: fastFloor(frame.height * 0.41667 + 0.5) - fastFloor(frame.height * 0.25000 + 0.5)), cornerRadius: 1)
+		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.10,
+														  y: (frame.height / 6) * 1.4,
+														  width: middleWardWidth,
+														  height: middleWardHeight),
+									  cornerRadius: middleWardRadius)
 		colorOfWards.setFill()
 		middleWardPath.fill()
 
-		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.27083 + 0.5), y: frame.minY + fastFloor(frame.height * 0.58333 + 0.5), width: fastFloor(frame.width * 0.70833 + 0.5) - fastFloor(frame.width * 0.27083 + 0.5), height: fastFloor(frame.height * 0.75000 + 0.5) - fastFloor(frame.height * 0.58333 + 0.5)), cornerRadius: 1)
+		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.width * 0.30,
+														 y: (frame.height / 6) * 3.4,
+														 width: shortWardWidth,
+														 height: shortWardHeight),
+									 cornerRadius: shortWardRadius)
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
@@ -105,47 +195,82 @@ class AlingmentItemView: UIView {
 
 	func drawTop(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
-		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.00000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.10417 + 0.5), width: fastFloor(frame.width * 1.00000 + 0.5) - fastFloor(frame.width * 0.00000 + 0.5), height: fastFloor(frame.height * 0.20833 + 0.5) - fastFloor(frame.height * 0.10417 + 0.5)), cornerRadius: 1)
+		longWardPath = UIBezierPath(roundedRect: CGRect(x: 0,
+														y: frame.height * 0.10,
+														width: longWardWidth,
+														height: longWardHeight),
+									cornerRadius: longWardRadius)
 		colorOfWards.setFill()
 		longWardPath.fill()
 
-		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.25000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.33333 + 0.5), width: fastFloor(frame.width * 0.41667 + 0.5) - fastFloor(frame.width * 0.25000 + 0.5), height: fastFloor(frame.height * 0.91667 + 0.5) - fastFloor(frame.height * 0.33333 + 0.5)), cornerRadius: 1)
+		middleWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width / 6) * 1.4,
+														  y: frame.height * 0.30,
+														  width: middleWardWidth,
+														  height: middleWardHeight),
+									  cornerRadius: middleWardRadius)
 		colorOfWards.setFill()
 		middleWardPath.fill()
 
-		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.58333 + 0.5), y: frame.minY + fastFloor(frame.height * 0.33333 + 0.5), width: fastFloor(frame.width * 0.75000 + 0.5) - fastFloor(frame.width * 0.58333 + 0.5), height: fastFloor(frame.height * 0.75000 + 0.5) - fastFloor(frame.height * 0.33333 + 0.5)), cornerRadius: 1)
+		shortWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width / 6) * 3.4,
+														 y: frame.height * 0.30,
+														 width: shortWardWidth,
+														 height: shortWardHeight),
+									 cornerRadius: shortWardRadius)
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
 
 	func drawMiddle(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
-		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.00000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.47917 + 0.5), width: fastFloor(frame.width * 1.00000 + 0.5) - fastFloor(frame.width * 0.00000 + 0.5), height: fastFloor(frame.height * 0.58333 + 0.5) - fastFloor(frame.height * 0.47917 + 0.5)), cornerRadius: 1)
+		longWardPath = UIBezierPath(roundedRect: CGRect(x: 0,
+														y: frame.height * 0.45,
+														width: longWardWidth,
+														height: longWardHeight),
+									cornerRadius: longWardRadius)
 		colorOfWards.setFill()
 		longWardPath.fill()
 
-		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.25000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.25000 + 0.5), width: fastFloor(frame.width * 0.41667 + 0.5) - fastFloor(frame.width * 0.25000 + 0.5), height: fastFloor(frame.height * 0.83333 + 0.5) - fastFloor(frame.height * 0.25000 + 0.5)), cornerRadius: 1)
+		middleWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width / 6) * 1.4,
+														  y: (frame.height - middleWardHeight) / 2,
+														  width: middleWardWidth,
+														  height: middleWardHeight),
+									  cornerRadius: middleWardRadius)
 		colorOfWards.setFill()
 		middleWardPath.fill()
 
-		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.58333 + 0.5), y: frame.minY + fastFloor(frame.height * 0.33333 + 0.5), width: fastFloor(frame.width * 0.75000 + 0.5) - fastFloor(frame.width * 0.58333 + 0.5), height: fastFloor(frame.height * 0.75000 + 0.5) - fastFloor(frame.height * 0.33333 + 0.5)), cornerRadius: 1)
+		shortWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width / 6) * 3.4,
+														 y: (frame.height - shortWardHeight) / 2,
+														 width: shortWardWidth,
+														 height: shortWardHeight),
+									 cornerRadius: shortWardRadius)
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
 
 	func drawBottom(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
-		longWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.00000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.79167 + 0.5), width: fastFloor(frame.width * 1.00000 + 0.5) - fastFloor(frame.width * 0.00000 + 0.5), height: fastFloor(frame.height * 0.89583 + 0.5) - fastFloor(frame.height * 0.79167 + 0.5)), cornerRadius: 1)
+		longWardPath = UIBezierPath(roundedRect: CGRect(x: 0,
+														y: frame.height * 0.80,
+														width: longWardWidth,
+														height: longWardHeight),
+									cornerRadius: longWardRadius)
 		colorOfWards.setFill()
 		longWardPath.fill()
 
-		middleWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.25000 + 0.5), y: frame.minY + fastFloor(frame.height * 0.10417 + 0.5), width: fastFloor(frame.width * 0.41667 + 0.5) - fastFloor(frame.width * 0.25000 + 0.5), height: fastFloor(frame.height * 0.68750 + 0.5) - fastFloor(frame.height * 0.10417 + 0.5)), cornerRadius: 1)
+		middleWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width / 6) * 1.4,
+														  y: (frame.height * 0.40) - (frame.height * 0.30),
+														  width: middleWardWidth,
+														  height: middleWardHeight),
+									  cornerRadius: middleWardRadius)
 		colorOfWards.setFill()
 		middleWardPath.fill()
 
-		shortWardPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + fastFloor(frame.width * 0.58333 + 0.5), y: frame.minY + fastFloor(frame.height * 0.27083 + 0.5), width: fastFloor(frame.width * 0.75000 + 0.5) - fastFloor(frame.width * 0.58333 + 0.5), height: fastFloor(frame.height * 0.68750 + 0.5) - fastFloor(frame.height * 0.27083 + 0.5)), cornerRadius: 1)
+		shortWardPath = UIBezierPath(roundedRect: CGRect(x: (frame.width / 6) * 3.4,
+														 y: (frame.height * 0.60) - (frame.height * 0.30),
+														 width: shortWardWidth,
+														 height: shortWardHeight),
+									 cornerRadius: shortWardRadius)
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
-
 }
