@@ -1,6 +1,6 @@
 # AlignmentControl is a component for alignment
 
-![<img src="https://user-images.githubusercontent.com/4906243/54856729-037dcb00-4d0d-11e9-9d6f-8a5b8e316ff8.png" height="15">](https://user-images.githubusercontent.com/4906243/56395781-b0803080-6244-11e9-91a4-408d32848465.png)
+![image](https://user-images.githubusercontent.com/4906243/56395781-b0803080-6244-11e9-91a4-408d32848465.png)
 
 [![Twitter](https://img.shields.io/badge/twitter-@JiromTomson-blue.svg?style=flat
 )](https://twitter.com/JiromTomson)
