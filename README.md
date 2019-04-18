@@ -2,7 +2,6 @@
 
 ![image](https://user-images.githubusercontent.com/4906243/56395781-b0803080-6244-11e9-91a4-408d32848465.png)
 
-
 [![Twitter](https://img.shields.io/badge/twitter-@JiromTomson-blue.svg?style=flat
 )](https://twitter.com/JiromTomson)
 [![CI Status](https://travis-ci.org/tularovbeslan/AlignmentControl.svg?branch=master)](https://travis-ci.org/tularovbeslan/AlignmentControl)
@@ -11,6 +10,8 @@
 ![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg)
 [![License](https://img.shields.io/cocoapods/l/AlignmentControl.svg?style=flat)](https://cocoapods.org/pods/AlignmentControl)
 [![Platform](https://img.shields.io/cocoapods/p/AlignmentControl.svg?style=flat)](https://cocoapods.org/pods/AlignmentControl)
+
+![isometric](https://user-images.githubusercontent.com/4906243/56395868-05bc4200-6245-11e9-8495-82b70d791b20.png)
 
 ## Example
 
