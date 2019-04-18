@@ -29,12 +29,15 @@ class AlingmentView: UIView {
 
 		for (index, alignmentMode) in alignmentModes.enumerated() {
 
-			let fullWidth: CGFloat = frame.width / CGFloat(alignmentModes.count)
-			let fullHeight: CGFloat = frame.height * 0.6
-			let padding: CGFloat = (frame.width * 0.2) / CGFloat(alignmentModes.count)
-			let offset: CGFloat = (fullWidth * CGFloat(index)) + (padding / 2)
-			let width: CGFloat = (fullWidth - padding)
-			let height: CGFloat = fullHeight
+			let itemWidth: CGFloat = (frame.width / CGFloat(alignmentModes.count)) * 0.8
+
+			let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.8
+
+			let padding =  (frame.width - (length * CGFloat(alignmentModes.count))) / CGFloat(alignmentModes.count + 1)
+			let offset: CGFloat = ((padding + length) * CGFloat(index)) + padding
+
+			let width: CGFloat = length
+			let height: CGFloat = length
 
 			let item = AlingmentItemView(alignmentMode)
 			addSubview(item)
