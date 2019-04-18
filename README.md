@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/cocoapods/l/AlignmentControl.svg?style=flat)](https://cocoapods.org/pods/AlignmentControl)
 [![Platform](https://img.shields.io/cocoapods/p/AlignmentControl.svg?style=flat)](https://cocoapods.org/pods/AlignmentControl)
 
-![isometric](https://user-images.githubusercontent.com/4906243/56395868-05bc4200-6245-11e9-8495-82b70d791b20.png)
+![Artboard@3x](https://user-images.githubusercontent.com/4906243/56395918-3d2aee80-6245-11e9-8867-3556dcfdf4b6.png)
 
 ## Example
 
