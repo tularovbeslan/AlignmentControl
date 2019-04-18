@@ -44,7 +44,7 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	var longWardRadius: CGFloat { return longWardWidth * 0.5 }
+	var longWardRadius: CGFloat { return longWardWidth * 0.3 }
 
 	var middleWardWidth: CGFloat {
 
