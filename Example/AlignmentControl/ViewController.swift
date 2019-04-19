@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
 		alignView.setBackgroundImage(UIImage(named: "Group"))
+        alignView.setDelegate(self)
 	}
 
     override func didReceiveMemoryWarning() {
@@ -26,3 +27,9 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: AlingmentItemViewDelegate {
+    
+    func didPress(aligment: AlignmentMode) {
+        print(String(describing: aligment))
+    }
+}

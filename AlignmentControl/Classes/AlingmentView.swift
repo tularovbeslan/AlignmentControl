@@ -9,6 +9,14 @@ import UIKit
 
 open class AlingmentView: UIView {
 
+    open func setDelegate( _ delegate: AlingmentItemViewDelegate?) {
+
+        for item in items {
+            item.delegate = delegate
+        }
+    }
+    
+    private var items: [AlingmentItemView] = []
 	fileprivate var backgroundImage: UIImageView = {
 
 		let imageView: UIImageView = UIImageView()
@@ -65,6 +73,7 @@ open class AlingmentView: UIView {
 
 			let item = AlingmentItemView(alignmentMode)
 			addSubview(item)
+            items.append(item)
 
 			item.translatesAutoresizingMaskIntoConstraints = false
 			item.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true

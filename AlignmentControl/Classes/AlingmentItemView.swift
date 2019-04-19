@@ -7,28 +7,20 @@
 
 import UIKit
 
-@objc enum AlignmentMode: Int, CaseIterable {
-
-	case Left
-	case Center
-	case Right
-	case Top
-	case Middle
-	case Bottom
-}
-
 @IBDesignable
 class AlingmentItemView: UIView {
 
+    weak var delegate: AlingmentItemViewDelegate?
+    
 	@IBInspectable var colorOfWards: UIColor = UIColor.init(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
 
 	var alignmentMode: AlignmentMode = .Left
 
-	var longWardPath: UIBezierPath!
-	var middleWardPath: UIBezierPath!
-	var shortWardPath: UIBezierPath!
+	private var longWardPath: UIBezierPath!
+	private var middleWardPath: UIBezierPath!
+	private var shortWardPath: UIBezierPath!
 
-	var longWardWidth: CGFloat {
+	private var longWardWidth: CGFloat {
 
 		switch alignmentMode {
 		case .Left, .Center, .Right: return frame.width * 0.10
@@ -36,17 +28,17 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	var longWardHeight: CGFloat {
+	private var longWardHeight: CGFloat {
 
-		switch alignmentMode {
-		case .Left, .Center, .Right: return frame.height
-		case .Top, .Middle, .Bottom: return frame.height * 0.10
-		}
+        switch alignmentMode {
+        case .Left, .Center, .Right: return frame.height
+        case .Top, .Middle, .Bottom: return frame.height * 0.10
+        }
 	}
 
-	var longWardRadius: CGFloat { return longWardWidth * 0.3 }
+	private var longWardRadius: CGFloat { return longWardWidth * 0.3 }
 
-	var middleWardWidth: CGFloat {
+	private var middleWardWidth: CGFloat {
 
 		switch alignmentMode {
 		case .Left, .Center, .Right: return frame.width * 0.60
@@ -54,7 +46,7 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	var middleWardHeight: CGFloat {
+	private var middleWardHeight: CGFloat {
 
 		switch alignmentMode {
 		case .Left, .Center, .Right: return frame.height / 5
@@ -62,9 +54,9 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	var middleWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
+	private var middleWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
 
-	var shortWardWidth: CGFloat {
+	private var shortWardWidth: CGFloat {
 
 		switch alignmentMode {
 		case .Left, .Center, .Right: return frame.width * 0.40
@@ -72,7 +64,7 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	var shortWardHeight: CGFloat {
+	private var shortWardHeight: CGFloat {
 
 		switch alignmentMode {
 		case .Left, .Center, .Right: return frame.height / 5
@@ -80,23 +72,42 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	var shortWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
+	private var shortWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-
+        
+         addTapGesture()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+        
+         addTapGesture()
 	}
 
-	convenience init(_ alignmentMode: AlignmentMode) {
+    convenience init(_ alignmentMode: AlignmentMode) {
 		self.init()
         
 		self.alignmentMode = alignmentMode
+        addTapGesture()
 	}
 
+    // MARK: - Private
+    
+    private func addTapGesture() {
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAligment))
+        self.addGestureRecognizer(tap)
+    }
+    
+     @objc private func tapAligment() {
+        
+        if let delegate = delegate {
+            delegate.didPress(aligment: alignmentMode)
+        }
+    }
+    
 	override func draw(_ rect: CGRect) {
 
 		switch alignmentMode {
