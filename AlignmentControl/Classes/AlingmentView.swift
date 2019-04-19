@@ -9,8 +9,6 @@ import UIKit
 
 open class AlingmentView: UIView {
 
-	var alignmentModes: [AlignmentMode] = [.Left, .Center, .Right, .Top, .Middle, .Bottom]
-
 	fileprivate var backgroundImage: UIImageView = {
 
 		let imageView: UIImageView = UIImageView()
@@ -52,13 +50,14 @@ open class AlingmentView: UIView {
 
 	fileprivate func setupItems() {
 
-		for (index, alignmentMode) in alignmentModes.enumerated() {
+        let count = AlignmentMode.allCases.count
+		for (index, alignmentMode) in AlignmentMode.allCases.enumerated() {
 
-			let itemWidth: CGFloat = (frame.width / CGFloat(alignmentModes.count))
+			let itemWidth: CGFloat = (frame.width / CGFloat(count))
 
 			let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.80
 
-			let padding =  (frame.width - (length * CGFloat(alignmentModes.count))) / CGFloat(alignmentModes.count)
+			let padding =  (frame.width - (length * CGFloat(count))) / CGFloat(count)
 			let offset: CGFloat = ((padding + length) * CGFloat(index)) + (padding / 2)
 
 			let width: CGFloat = length

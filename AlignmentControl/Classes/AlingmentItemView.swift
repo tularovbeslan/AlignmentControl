@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc enum AlignmentMode: Int {
+@objc enum AlignmentMode: Int, CaseIterable {
 
 	case Left
 	case Center
@@ -93,6 +93,7 @@ class AlingmentItemView: UIView {
 
 	convenience init(_ alignmentMode: AlignmentMode) {
 		self.init()
+        
 		self.alignmentMode = alignmentMode
 	}
 
@@ -108,7 +109,7 @@ class AlingmentItemView: UIView {
 		}
 	}
 
-	func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
+//    func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
 
 	func drawLeft(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
