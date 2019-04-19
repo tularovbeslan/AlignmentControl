@@ -18,6 +18,7 @@ class ViewController: UIViewController {
 
 		alignView.setBackgroundImage(UIImage(named: "Group"))
         alignView.delegate = self
+		alignView.dataSource = self
 		
 	}
 
@@ -28,9 +29,16 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: AlingmentItemViewDelegate {
+extension ViewController: AlingmentViewDelegate {
     
-    func didPress(aligment: AlignmentMode) {
-        print(String(describing: aligment))
-    }
+	func didSelectOptionFor(_ aligment: AlignmentMode) {
+		print(String(describing: aligment))
+	}
+}
+
+extension ViewController: AlingmentViewDataSource {
+
+	func optionsForAlignment() -> [AlignmentMode] {
+		return [.Left, .Center, .Right, .Top, .Middle, .Bottom]
+	}
 }

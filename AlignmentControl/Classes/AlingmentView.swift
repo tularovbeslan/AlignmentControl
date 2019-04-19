@@ -9,14 +9,23 @@ import UIKit
 
 open class AlingmentView: UIView {
 
-	open weak var delegate: AlingmentItemViewDelegate? {
+	open weak var delegate: AlingmentViewDelegate?
+
+	open weak var dataSource: AlingmentViewDataSource? {
 		didSet {
+			alignmentModes = dataSource?.optionsForAlignment()
 			for item in items {
 				item.delegate = delegate
 			}
 		}
 	}
-    
+
+	private var alignmentModes: [AlignmentMode]? {
+		didSet {
+			setupItems()
+		}
+	}
+
     private var items: [AlingmentItemView] = []
 
 	fileprivate var backgroundImage: UIImageView = {
@@ -85,14 +94,15 @@ open class AlingmentView: UIView {
 
 	fileprivate func setupItems() {
 
-        let count = AlignmentMode.allCases.count
-		for (index, alignmentMode) in AlignmentMode.allCases.enumerated() {
+		guard let modes = alignmentModes else { return }
+		let count = CGFloat(modes.count)
+		for (index, alignmentMode) in modes.enumerated() {
 
-			let itemWidth: CGFloat = (frame.width / CGFloat(count))
+			let itemWidth: CGFloat = (frame.width / count)
 
 			let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.80
 
-			let padding =  (frame.width - (length * CGFloat(count))) / CGFloat(count)
+			let padding =  (frame.width - (length * count)) / count
 			let offset: CGFloat = ((padding + length) * CGFloat(index)) + (padding / 2)
 
 			let width: CGFloat = length
@@ -101,7 +111,7 @@ open class AlingmentView: UIView {
 			let item = AlingmentItemView(alignmentMode)
             item.parentView = self
 			addSubview(item)
-            items.append(item)
+			items.append(item)
 
 			item.translatesAutoresizingMaskIntoConstraints = false
 			item.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
@@ -113,4 +123,12 @@ open class AlingmentView: UIView {
 		}
 	}
     
+}
+
+public protocol AlingmentViewDelegate: class {
+	func didSelectOptionFor(_ aligment: AlignmentMode)
+}
+
+public protocol AlingmentViewDataSource: class {
+	func optionsForAlignment() -> [AlignmentMode]
 }
