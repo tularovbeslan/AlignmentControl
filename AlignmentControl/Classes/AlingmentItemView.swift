@@ -10,11 +10,11 @@ import UIKit
 @IBDesignable
 class AlingmentItemView: UIView {
 
-    weak var delegate: AlingmentItemViewDelegate?
+    weak var delegate: AlingmentViewDelegate?
     
 	@IBInspectable var colorOfWards: UIColor = UIColor.init(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
 
-	var alignmentMode: AlignmentMode = .Left
+	var alignment: AlignmentMode = .Left
 
 	private var longWardPath: UIBezierPath!
 	private var middleWardPath: UIBezierPath!
@@ -22,7 +22,7 @@ class AlingmentItemView: UIView {
 
 	private var longWardWidth: CGFloat {
 
-		switch alignmentMode {
+		switch alignment {
 		case .Left, .Center, .Right: return frame.width * 0.10
 		case .Top, .Middle, .Bottom: return frame.width
 		}
@@ -30,7 +30,7 @@ class AlingmentItemView: UIView {
 
 	private var longWardHeight: CGFloat {
 
-        switch alignmentMode {
+        switch alignment {
         case .Left, .Center, .Right: return frame.height
         case .Top, .Middle, .Bottom: return frame.height * 0.10
         }
@@ -40,7 +40,7 @@ class AlingmentItemView: UIView {
 
 	private var middleWardWidth: CGFloat {
 
-		switch alignmentMode {
+		switch alignment {
 		case .Left, .Center, .Right: return frame.width * 0.60
 		case .Top, .Middle, .Bottom: return frame.height / 5
 		}
@@ -48,7 +48,7 @@ class AlingmentItemView: UIView {
 
 	private var middleWardHeight: CGFloat {
 
-		switch alignmentMode {
+		switch alignment {
 		case .Left, .Center, .Right: return frame.height / 5
 		case .Top, .Middle, .Bottom: return frame.height * 0.60
 		}
@@ -58,7 +58,7 @@ class AlingmentItemView: UIView {
 
 	private var shortWardWidth: CGFloat {
 
-		switch alignmentMode {
+		switch alignment {
 		case .Left, .Center, .Right: return frame.width * 0.40
 		case .Top, .Middle, .Bottom: return frame.height / 5
 		}
@@ -66,7 +66,7 @@ class AlingmentItemView: UIView {
 
 	private var shortWardHeight: CGFloat {
 
-		switch alignmentMode {
+		switch alignment {
 		case .Left, .Center, .Right: return frame.height / 5
 		case .Top, .Middle, .Bottom: return frame.height * 0.40
 		}
@@ -86,10 +86,10 @@ class AlingmentItemView: UIView {
          addTapGesture()
 	}
 
-    convenience init(_ alignmentMode: AlignmentMode) {
+    convenience init(_ alignment: AlignmentMode) {
 		self.init()
         
-		self.alignmentMode = alignmentMode
+		self.alignment = alignment
         addTapGesture()
 	}
 
@@ -104,13 +104,13 @@ class AlingmentItemView: UIView {
      @objc private func tapAligment() {
         
         if let delegate = delegate {
-            delegate.didPress(aligment: alignmentMode)
+            delegate.didSelectOptionFor(alignment)
         }
     }
     
 	override func draw(_ rect: CGRect) {
 
-		switch alignmentMode {
+		switch alignment {
 		case .Left: drawLeft(frame: rect)
 		case .Center: drawCenter(frame: rect)
 		case .Right: drawRight(frame: rect)
