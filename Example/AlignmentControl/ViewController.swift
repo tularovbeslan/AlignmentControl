@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
 		alignView.setBackgroundImage(UIImage(named: "Group"))
-        alignView.setDelegate(self)
+        alignView.delegate = self
+		
 	}
 
     override func didReceiveMemoryWarning() {

@@ -186,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				57E6523D2266461700524487 /* AlingmentItemView.swift */,
-				57E6523F2266462D00524487 /* AlingmentView.swift */,
 				CCB98F0B2269F6880002DDBF /* AlingmentItemViewDelegate.swift */,
+				57E6523F2266462D00524487 /* AlingmentView.swift */,
 				CCB98F0F2269FBA30002DDBF /* AlignmentMode.swift */,
 			);
 			name = Classes;
