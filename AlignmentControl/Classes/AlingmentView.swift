@@ -14,9 +14,6 @@ open class AlingmentView: UIView {
 	open weak var dataSource: AlingmentViewDataSource? {
 		didSet {
 			alignmentModes = dataSource?.optionsForAlignment()
-			for item in items {
-				item.delegate = delegate
-			}
 		}
 	}
 
@@ -110,6 +107,7 @@ open class AlingmentView: UIView {
 
 			let item = AlingmentItemView(alignmentMode)
             item.parentView = self
+            item.delegate = delegate
 			addSubview(item)
 			items.append(item)
 

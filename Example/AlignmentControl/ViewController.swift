@@ -19,7 +19,6 @@ class ViewController: UIViewController {
 		alignView.setBackgroundImage(UIImage(named: "Group"))
         alignView.delegate = self
 		alignView.dataSource = self
-		
 	}
 
     override func didReceiveMemoryWarning() {
