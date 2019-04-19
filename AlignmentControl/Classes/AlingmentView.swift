@@ -30,12 +30,15 @@ open class AlingmentView: UIView {
 		backgroundImage.image = image
 	}
 
+    fileprivate var pulseAnimation: CASpringAnimation?
+    
 	override open func awakeFromNib() {
 		super.awakeFromNib()
 
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
+        makeAnimation()
 	}
 
 	override init(frame: CGRect) {
@@ -44,12 +47,34 @@ open class AlingmentView: UIView {
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
+        makeAnimation()
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
+    func applyAnimation() {
+        
+        if let animation = pulseAnimation {
+            self.layer.add(animation, forKey: nil)
+        }
+    }
+    
+    // MARK: - Private
+    
+    fileprivate func makeAnimation() {
+    
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.fromValue = 1.0
+        pulse.toValue = 0.98
+        pulse.duration = 0.3
+        pulse.damping = 6.0
+        pulse.autoreverses = true
+        pulse.isRemovedOnCompletion = true
+        pulseAnimation = pulse
+    }
+    
 	fileprivate func setupBackgroundImageConstraints() {
 
 		backgroundImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -74,6 +99,7 @@ open class AlingmentView: UIView {
 			let height: CGFloat = length
 
 			let item = AlingmentItemView(alignmentMode)
+            item.parentView = self
 			addSubview(item)
             items.append(item)
 
@@ -86,4 +112,5 @@ open class AlingmentView: UIView {
 			item.backgroundColor = .clear
 		}
 	}
+    
 }

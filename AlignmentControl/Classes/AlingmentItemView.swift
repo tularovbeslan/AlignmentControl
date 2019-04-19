@@ -12,6 +12,8 @@ class AlingmentItemView: UIView {
 
     weak var delegate: AlingmentItemViewDelegate?
     
+    unowned var parentView: AlingmentView!
+    
 	@IBInspectable var colorOfWards: UIColor = UIColor.init(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
 
 	var alignmentMode: AlignmentMode = .Left
@@ -102,7 +104,8 @@ class AlingmentItemView: UIView {
     }
     
      @objc private func tapAligment() {
-        
+
+        parentView.applyAnimation()
         if let delegate = delegate {
             delegate.didPress(aligment: alignmentMode)
         }
@@ -119,8 +122,6 @@ class AlingmentItemView: UIView {
 		case .Bottom: drawBottom(frame: rect)
 		}
 	}
-
-//    func fastFloor(_ x: CGFloat) -> CGFloat { return floor(x) }
 
 	func drawLeft(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
 
