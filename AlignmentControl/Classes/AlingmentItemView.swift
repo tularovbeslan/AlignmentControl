@@ -18,6 +18,7 @@ class AlingmentItemView: UIView {
 
 	var alignment: AlignmentMode = .Left
 
+    private var activeWard: [CAShapeLayer] = []
 	private var longWardPath: UIBezierPath!
 	private var middleWardPath: UIBezierPath!
 	private var shortWardPath: UIBezierPath!
@@ -79,13 +80,13 @@ class AlingmentItemView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
         
-         addTapGesture()
+        addTapGesture()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
         
-         addTapGesture()
+        addTapGesture()
 	}
 
     convenience init(_ alignment: AlignmentMode) {
@@ -94,6 +95,33 @@ class AlingmentItemView: UIView {
 		self.alignment = alignment
         addTapGesture()
 	}
+
+    func presentAnimation() {
+        
+        switch alignment {
+        case .Bottom, .Center, .Top:
+            makeWard(middleWardPath, delay: 0)
+            makeWard(shortWardPath, delay: 0.1)
+            
+        default:
+            makeWard(shortWardPath, delay: 0.0)
+            makeWard(middleWardPath, delay: 0.1)
+        }
+    }
+    
+    func hideAnimation() {
+        
+        switch alignment {
+        case .Bottom, .Center, .Top:
+            hideWard(activeWard.first!, delay: 0)
+            hideWard(activeWard.last!, delay: 0.1)
+            
+        default:
+            hideWard(activeWard.last!, delay: 0)
+            hideWard(activeWard.first!, delay: 0.1)
+        }
+        activeWard.removeAll()
+    }
 
     // MARK: - Private
     
@@ -106,13 +134,15 @@ class AlingmentItemView: UIView {
      @objc private func tapAligment() {
 
         parentView.applyAnimation()
+        parentView.activeAligmentView = self
         if let delegate = delegate {
             delegate.didSelectOptionFor(alignment)
         }
     }
     
 	override func draw(_ rect: CGRect) {
-
+        super.draw(rect)
+        
 		switch alignment {
 		case .Left: drawLeft(frame: rect)
 		case .Center: drawCenter(frame: rect)
@@ -286,4 +316,51 @@ class AlingmentItemView: UIView {
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
+}
+
+extension AlingmentItemView: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        
+        guard let layer = anim.value(forKey: "removeLayer") as? CAShapeLayer else { return }
+        layer.removeFromSuperlayer()
+    }
+    
+    fileprivate func makeWard(_ ward: UIBezierPath, delay: CFTimeInterval) {
+        
+        let wardShapeLayer = CAShapeLayer()
+        wardShapeLayer.path = ward.cgPath
+        wardShapeLayer.fillColor = UIColor.red.cgColor
+        self.layer.addSublayer(wardShapeLayer)
+        activeWard.append(wardShapeLayer)
+        
+        let animation = CASpringAnimation(keyPath: "position.y")
+        animation.fromValue =  wardShapeLayer.position.y - 50.0
+        animation.toValue = wardShapeLayer.position.y
+        animation.initialVelocity = 10.0
+        animation.mass = 1.0
+        animation.stiffness = 100.0
+        animation.damping = 10.0
+        animation.duration = animation.settlingDuration
+        animation.beginTime = CACurrentMediaTime() + delay
+        animation.isRemovedOnCompletion = true
+        wardShapeLayer.add(animation, forKey: nil)
+    }
+    
+    fileprivate func hideWard(_ ward: CAShapeLayer, delay: CFTimeInterval) {
+        
+        let animation = CASpringAnimation(keyPath: "position.y")
+        animation.delegate = self
+        animation.setValue(ward, forKey: "removeLayer")
+        animation.fromValue = ward.position.y
+        animation.toValue = ward.position.y + 50.0
+        animation.initialVelocity = 10.0
+        animation.mass = 1.0
+        animation.stiffness = 100.0
+        animation.damping = 10.0
+        animation.duration = animation.settlingDuration
+        animation.beginTime = CACurrentMediaTime() + delay
+        animation.isRemovedOnCompletion = true
+        ward.add(animation, forKey: nil)
+    }
 }

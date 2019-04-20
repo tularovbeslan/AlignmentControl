@@ -23,6 +23,17 @@ open class AlingmentView: UIView {
 		}
 	}
 
+    var activeAligmentView: AlingmentItemView! {
+        didSet {
+            
+            if activeAligmentView == oldValue { return }
+            if oldValue != nil {
+                oldValue.hideAnimation()
+            }
+            activeAligmentView.presentAnimation()
+        }
+    }
+    
     private var items: [AlingmentItemView] = []
 
 	fileprivate var backgroundImage: UIImageView = {
@@ -41,6 +52,7 @@ open class AlingmentView: UIView {
 	override open func awakeFromNib() {
 		super.awakeFromNib()
 
+        self.clipsToBounds = true
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
@@ -50,6 +62,7 @@ open class AlingmentView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
+        self.clipsToBounds = true
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
