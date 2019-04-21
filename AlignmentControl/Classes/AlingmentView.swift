@@ -2,8 +2,6 @@
 //  AlingmentView.swift
 //  AlignmentControl
 //
-//  Created by workmachine on 16/04/2019.
-//
 
 import UIKit
 
@@ -23,18 +21,18 @@ open class AlingmentView: UIView {
 		}
 	}
 
-    var activeAligmentView: AlingmentItemView! {
-        didSet {
-            
-            if activeAligmentView == oldValue { return }
-            if oldValue != nil {
-                oldValue.hideAnimation()
-            }
-            activeAligmentView.presentAnimation()
-        }
-    }
-    
-    private var items: [AlingmentItemView] = []
+	var activeAligmentView: AlingmentItemView! {
+		didSet {
+
+			if activeAligmentView == oldValue { return }
+			if oldValue != nil {
+				oldValue.hideAnimation()
+			}
+			activeAligmentView.presentAnimation()
+		}
+	}
+
+	private var items: [AlingmentItemView] = []
 
 	fileprivate var backgroundImage: UIImageView = {
 
@@ -47,53 +45,56 @@ open class AlingmentView: UIView {
 		backgroundImage.image = image
 	}
 
-    fileprivate var pulseAnimation: CASpringAnimation?
-    
+	fileprivate var pulseAnimation: CASpringAnimation?
+
 	override open func awakeFromNib() {
 		super.awakeFromNib()
 
-        self.clipsToBounds = true
+		self.clipsToBounds = true
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
-        makeAnimation()
 	}
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-        self.clipsToBounds = true
+		self.clipsToBounds = true
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
-        makeAnimation()
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
-    func applyAnimation() {
-        
-        if let animation = pulseAnimation {
-            self.layer.add(animation, forKey: nil)
-        }
-    }
-    
-    // MARK: - Private
-    
-    fileprivate func makeAnimation() {
-    
-        let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.fromValue = 1.0
-        pulse.toValue = 0.98
-        pulse.duration = 0.3
-        pulse.damping = 6.0
-        pulse.autoreverses = true
-        pulse.isRemovedOnCompletion = true
-        pulseAnimation = pulse
-    }
-    
+	// MARK: - Private
+
+	func zoomIn() {
+
+		let animation = CABasicAnimation(keyPath: "transform.scale")
+		animation.fromValue = 1.0
+		animation.toValue = 0.98
+		animation.duration = 0.3
+		animation.fillMode = .forwards
+		animation.isRemovedOnCompletion = false
+		animation.autoreverses = false
+		layer.add(animation, forKey: "zoomIn")
+	}
+
+	func zoomOut() {
+
+		let animation = CABasicAnimation(keyPath: "transform.scale")
+		animation.fromValue = 0.98
+		animation.toValue = 1.0
+		animation.duration = 0.3
+		animation.fillMode = .forwards
+		animation.isRemovedOnCompletion = false
+		animation.autoreverses = false
+		layer.add(animation, forKey: "zoomOut")
+	}
+
 	fileprivate func setupBackgroundImageConstraints() {
 
 		backgroundImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -119,8 +120,8 @@ open class AlingmentView: UIView {
 			let height: CGFloat = length
 
 			let item = AlingmentItemView(alignmentMode)
-            item.parentView = self
-            item.delegate = delegate
+			item.parentView = self
+			item.delegate = delegate
 			addSubview(item)
 			items.append(item)
 
@@ -133,7 +134,7 @@ open class AlingmentView: UIView {
 			item.backgroundColor = .clear
 		}
 	}
-    
+
 }
 
 public protocol AlingmentViewDelegate: class {
@@ -143,3 +144,4 @@ public protocol AlingmentViewDelegate: class {
 public protocol AlingmentViewDataSource: class {
 	func optionsForAlignment() -> [AlignmentMode]
 }
+

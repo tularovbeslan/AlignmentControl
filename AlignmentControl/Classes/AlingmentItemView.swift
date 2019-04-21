@@ -10,15 +10,15 @@ import UIKit
 @IBDesignable
 class AlingmentItemView: UIView {
 
-    weak var delegate: AlingmentViewDelegate?
-    
-    unowned var parentView: AlingmentView!
-    
+	weak var delegate: AlingmentViewDelegate?
+
+	unowned var parentView: AlingmentView!
+
 	@IBInspectable var colorOfWards: UIColor = UIColor.init(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
 
 	var alignment: AlignmentMode = .Left
 
-    private var activeWard: [CAShapeLayer] = []
+	private var activeWard: [CAShapeLayer] = []
 	private var longWardPath: UIBezierPath!
 	private var middleWardPath: UIBezierPath!
 	private var shortWardPath: UIBezierPath!
@@ -33,10 +33,10 @@ class AlingmentItemView: UIView {
 
 	private var longWardHeight: CGFloat {
 
-        switch alignment {
-        case .Left, .Center, .Right: return frame.height
-        case .Top, .Middle, .Bottom: return frame.height * 0.10
-        }
+		switch alignment {
+		case .Left, .Center, .Right: return frame.height
+		case .Top, .Middle, .Bottom: return frame.height * 0.10
+		}
 	}
 
 	private var longWardRadius: CGFloat { return longWardWidth * 0.3 }
@@ -79,70 +79,63 @@ class AlingmentItemView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-        
-        addTapGesture()
+
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-        
-        addTapGesture()
 	}
 
-    convenience init(_ alignment: AlignmentMode) {
+	convenience init(_ alignment: AlignmentMode) {
 		self.init()
-        
+
 		self.alignment = alignment
-        addTapGesture()
 	}
 
-    func presentAnimation() {
-        
-        switch alignment {
-        case .Bottom, .Center, .Top:
-            makeWard(middleWardPath, delay: 0)
-            makeWard(shortWardPath, delay: 0.1)
-            
-        default:
-            makeWard(shortWardPath, delay: 0.0)
-            makeWard(middleWardPath, delay: 0.1)
-        }
-    }
-    
-    func hideAnimation() {
-        
-        switch alignment {
-        case .Bottom, .Center, .Top:
-            hideWard(activeWard.first!, delay: 0)
-            hideWard(activeWard.last!, delay: 0.1)
-            
-        default:
-            hideWard(activeWard.last!, delay: 0)
-            hideWard(activeWard.first!, delay: 0.1)
-        }
-        activeWard.removeAll()
-    }
+	func presentAnimation() {
 
-    // MARK: - Private
-    
-    private func addTapGesture() {
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAligment))
-        self.addGestureRecognizer(tap)
-    }
-    
-     @objc private func tapAligment() {
+		switch alignment {
+		case .Bottom, .Center, .Top:
+			makeWard(middleWardPath, delay: 0)
+			makeWard(shortWardPath, delay: 0.1)
 
-        parentView.applyAnimation()
-        parentView.activeAligmentView = self
-        if let delegate = delegate {
-            delegate.didSelectOptionFor(alignment)
-        }
-    }
-    
+		default:
+			makeWard(shortWardPath, delay: 0.0)
+			makeWard(middleWardPath, delay: 0.1)
+		}
+	}
+
+	func hideAnimation() {
+
+		switch alignment {
+		case .Bottom, .Center, .Top:
+			hideWard(activeWard.first!, delay: 0)
+			hideWard(activeWard.last!, delay: 0.1)
+
+		default:
+			hideWard(activeWard.last!, delay: 0)
+			hideWard(activeWard.first!, delay: 0.1)
+		}
+		activeWard.removeAll()
+	}
+
+	// MARK: - Private
+
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		parentView.zoomIn()
+	}
+
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		parentView.zoomOut()
+		parentView.activeAligmentView = self
+		if let delegate = delegate {
+			delegate.didSelectOptionFor(alignment)
+		}
+	}
+
 	override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        
+		super.draw(rect)
+
 		switch alignment {
 		case .Left: drawLeft(frame: rect)
 		case .Center: drawCenter(frame: rect)
@@ -319,48 +312,48 @@ class AlingmentItemView: UIView {
 }
 
 extension AlingmentItemView: CAAnimationDelegate {
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        
-        guard let layer = anim.value(forKey: "removeLayer") as? CAShapeLayer else { return }
-        layer.removeFromSuperlayer()
-    }
-    
-    fileprivate func makeWard(_ ward: UIBezierPath, delay: CFTimeInterval) {
-        
-        let wardShapeLayer = CAShapeLayer()
-        wardShapeLayer.path = ward.cgPath
-        wardShapeLayer.fillColor = UIColor.red.cgColor
-        self.layer.addSublayer(wardShapeLayer)
-        activeWard.append(wardShapeLayer)
-        
-        let animation = CASpringAnimation(keyPath: "position.y")
-        animation.fromValue =  wardShapeLayer.position.y - 50.0
-        animation.toValue = wardShapeLayer.position.y
-        animation.initialVelocity = 10.0
-        animation.mass = 1.0
-        animation.stiffness = 100.0
-        animation.damping = 10.0
-        animation.duration = animation.settlingDuration
-        animation.beginTime = CACurrentMediaTime() + delay
-        animation.isRemovedOnCompletion = true
-        wardShapeLayer.add(animation, forKey: nil)
-    }
-    
-    fileprivate func hideWard(_ ward: CAShapeLayer, delay: CFTimeInterval) {
-        
-        let animation = CASpringAnimation(keyPath: "position.y")
-        animation.delegate = self
-        animation.setValue(ward, forKey: "removeLayer")
-        animation.fromValue = ward.position.y
-        animation.toValue = ward.position.y + 50.0
-        animation.initialVelocity = 10.0
-        animation.mass = 1.0
-        animation.stiffness = 100.0
-        animation.damping = 10.0
-        animation.duration = animation.settlingDuration
-        animation.beginTime = CACurrentMediaTime() + delay
-        animation.isRemovedOnCompletion = true
-        ward.add(animation, forKey: nil)
-    }
+
+	func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+
+		guard let layer = anim.value(forKey: "removeLayer") as? CAShapeLayer else { return }
+		layer.removeFromSuperlayer()
+	}
+
+	fileprivate func makeWard(_ ward: UIBezierPath, delay: CFTimeInterval) {
+
+		let wardShapeLayer = CAShapeLayer()
+		wardShapeLayer.path = ward.cgPath
+		wardShapeLayer.fillColor = UIColor.red.cgColor
+		self.layer.addSublayer(wardShapeLayer)
+		activeWard.append(wardShapeLayer)
+
+		let animation = CASpringAnimation(keyPath: "position.y")
+		animation.fromValue =  wardShapeLayer.position.y - 50.0
+		animation.toValue = wardShapeLayer.position.y
+		animation.initialVelocity = 10.0
+		animation.mass = 1.0
+		animation.stiffness = 100.0
+		animation.damping = 10.0
+		animation.duration = animation.settlingDuration
+		animation.beginTime = CACurrentMediaTime() + delay
+		animation.isRemovedOnCompletion = true
+		wardShapeLayer.add(animation, forKey: nil)
+	}
+
+	fileprivate func hideWard(_ ward: CAShapeLayer, delay: CFTimeInterval) {
+
+		let animation = CASpringAnimation(keyPath: "position.y")
+		animation.delegate = self
+		animation.setValue(ward, forKey: "removeLayer")
+		animation.fromValue = ward.position.y
+		animation.toValue = ward.position.y + 50.0
+		animation.initialVelocity = 10.0
+		animation.mass = 1.0
+		animation.stiffness = 100.0
+		animation.damping = 10.0
+		animation.duration = animation.settlingDuration
+		animation.beginTime = CACurrentMediaTime() + delay
+		animation.isRemovedOnCompletion = true
+		ward.add(animation, forKey: nil)
+	}
 }
