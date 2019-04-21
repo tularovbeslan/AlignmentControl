@@ -12,11 +12,20 @@ import AlignmentControl
 class ViewController: UIViewController {
 
 	@IBOutlet weak var alignView: AlingmentView!
-	@IBOutlet weak var contentView: UIView!
-	@IBOutlet weak var redView: UIView!
+	var contentView: UIView!
+	var redView: UIView!
 
 	var axisX: CGFloat = 0
 	var axisY: CGFloat = 0
+
+	var padding: CGFloat = 40
+	var width: CGFloat {
+		return contentView.frame.width - padding
+	}
+
+	var height: CGFloat {
+		return contentView.frame.height - padding
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +39,17 @@ class ViewController: UIViewController {
 		super.viewDidAppear(animated)
 
  		contentViewSetup()
-
+		generatePositions()
 		redViewSetup()
-
-
 	}
 
 	fileprivate func contentViewSetup() {
+
+		contentView = UIView(frame: CGRect(x: view.frame.origin.x + 15, y: 200, width: view.frame.width - 30, height: view.frame.height / 2))
+		contentView.layer.cornerRadius = 30
+		contentView.clipsToBounds = true
+		contentView.backgroundColor = .white
+		view.addSubview(contentView)
 
 		let lineDash = CAShapeLayer()
 		lineDash.strokeColor = UIColor.black.cgColor
@@ -45,20 +58,37 @@ class ViewController: UIViewController {
 		lineDash.fillColor = nil
 		lineDash.lineWidth = 2
 		lineDash.path = UIBezierPath(roundedRect: contentView.bounds, cornerRadius:  30).cgPath
-
-		contentView.layer.cornerRadius = 30
-		contentView.clipsToBounds = true
 		contentView.layer.addSublayer(lineDash)
 	}
 
 	fileprivate func redViewSetup() {
 
-		redView.layer.cornerRadius = 30
+		redView = UIView(frame: CGRect(x: 10,
+									   y: 10,
+									   width: width / 3,
+									   height: height / 3))
+		redView.layer.cornerRadius = 20
+		redView.backgroundColor = .red
 		redView.clipsToBounds = true
-		redView.frame = CGRect(x: 0,
-							   y: 0,
-							   width: contentView.frame.width / 3,
-							   height: contentView.frame.height / 3)
+		contentView.addSubview(redView)
+	}
+
+	fileprivate func generatePositions() {
+		for i in 0..<3 {
+
+			let y = ((height / 3 + 10) * CGFloat(i)) + 10
+			for j in 0..<3 {
+				let x = ((width / 3 + 10) * CGFloat(j)) + 10
+				let view = UIView(frame: CGRect(x: x,
+												y: y,
+												width: width / 3,
+												height: height / 3))
+				view.backgroundColor = UIColor.init(red: 239/255.0, green: 240/255.0, blue: 246/255.0, alpha: 0.6)
+				view.layer.cornerRadius = 20
+				view.clipsToBounds = true
+				contentView.addSubview(view)
+			}
+		}
 	}
 }
 
@@ -68,36 +98,68 @@ extension ViewController: AlingmentViewDelegate {
 		switch aligment {
 		case .Left:
 			axisX = 0
-			UIView.animate(withDuration: 0.3) {
+
+			UIView.animate(withDuration: 0.3,
+						   delay: 0,
+						   usingSpringWithDamping: 0.7,
+						   initialSpringVelocity: 0.7,
+						   options: [.curveEaseOut],
+						   animations: {
 				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}
+
+			}, completion: nil)
 		case .Center:
-			axisX = (self.contentView.frame.width / 2) -  (self.redView.frame.width / 2)
-			UIView.animate(withDuration: 0.3) {
+			axisX = (width / 2) -  (self.redView.frame.width / 2) + 10
+			UIView.animate(withDuration: 0.3,
+						   delay: 0,
+						   usingSpringWithDamping: 0.7,
+						   initialSpringVelocity: 0.7,
+						   options: [.curveEaseOut],
+						   animations: {
 				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}
+			}, completion: nil)
 		case .Right:
-			axisX = self.contentView.frame.width - self.redView.frame.width
-			UIView.animate(withDuration: 0.3) {
+			axisX = width - self.redView.frame.width + 20
+			UIView.animate(withDuration: 0.3,
+						   delay: 0,
+						   usingSpringWithDamping: 0.7,
+						   initialSpringVelocity: 0.7,
+						   options: [.curveEaseOut],
+						   animations: {
 				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}
+			}, completion: nil)
 		case .Top:
 			axisY = 0
-			UIView.animate(withDuration: 0.3) {
+			UIView.animate(withDuration: 0.3,
+						   delay: 0,
+						   usingSpringWithDamping: 0.7,
+						   initialSpringVelocity: 0.7,
+						   options: [.curveEaseOut],
+						   animations: {
 				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}
+			}, completion: nil)
 		case .Middle:
-			axisY = (self.contentView.frame.height / 2) -  (self.redView.frame.height / 2)
+			axisY = (height / 2) -  (self.redView.frame.height / 2) + 10
 
-			UIView.animate(withDuration: 0.3) {
+			UIView.animate(withDuration: 0.3,
+						   delay: 0,
+						   usingSpringWithDamping: 0.7,
+						   initialSpringVelocity: 0.7,
+						   options: [.curveEaseOut],
+						   animations: {
 				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}
+			}, completion: nil)
 		case .Bottom:
-			axisY = self.contentView.frame.height - self.redView.frame.height
+			axisY = height - self.redView.frame.height + 20
 
-			UIView.animate(withDuration: 0.3) {
+			UIView.animate(withDuration: 0.3,
+						   delay: 0,
+						   usingSpringWithDamping: 0.7,
+						   initialSpringVelocity: 0.7,
+						   options: [.curveEaseOut],
+						   animations: {
 				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}
+			}, completion: nil)
 		}
 	}
 }
