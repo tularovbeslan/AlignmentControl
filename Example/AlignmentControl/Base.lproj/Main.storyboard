@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yb7-sc-og2" customClass="AlingmentView" customModule="AlignmentControl">
-                                <rect key="frame" x="70.5" y="105" width="234" height="50"/>
+                                <rect key="frame" x="70.5" y="45" width="234" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="234" id="5MZ-Ue-514"/>
@@ -30,7 +30,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V60-AM-eu3">
-                                <rect key="frame" x="16" y="176" width="343" height="471"/>
+                                <rect key="frame" x="15" y="120" width="345" height="375"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDQ-5F-dM2">
                                         <rect key="frame" x="0.0" y="0.0" width="143" height="150"/>
@@ -38,17 +38,17 @@
                                         <color key="backgroundColor" red="1" green="0.20765605340000001" blue="0.18736512529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.62352941179999999" green="0.6705882353" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="V60-AM-eu3" firstAttribute="top" secondItem="Yb7-sc-og2" secondAttribute="bottom" constant="21" id="8se-Ma-8WW"/>
-                            <constraint firstItem="V60-AM-eu3" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="A7u-6P-2B0"/>
+                            <constraint firstItem="V60-AM-eu3" firstAttribute="top" secondItem="Yb7-sc-og2" secondAttribute="bottom" constant="25" id="8se-Ma-8WW"/>
+                            <constraint firstItem="V60-AM-eu3" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="width" id="9ae-wW-V5M"/>
                             <constraint firstItem="Yb7-sc-og2" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="S7k-t6-afb"/>
-                            <constraint firstItem="V60-AM-eu3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="SDm-5L-M61"/>
-                            <constraint firstItem="Yb7-sc-og2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="85" id="hSi-6G-W6I"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="V60-AM-eu3" secondAttribute="bottom" constant="20" id="m0v-h7-i02"/>
+                            <constraint firstItem="Yb7-sc-og2" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="hSi-6G-W6I"/>
+                            <constraint firstItem="V60-AM-eu3" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" constant="-30" id="tim-fh-NSl"/>
+                            <constraint firstItem="V60-AM-eu3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="v7V-M4-5d8"/>
                         </constraints>
                     </view>
                     <connections>
