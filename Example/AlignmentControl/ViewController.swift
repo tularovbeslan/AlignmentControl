@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		alignView.setBackgroundImage(UIImage(named: "Group"))
+		alignView.setBackgroundImage(UIImage(named: "group"))
         alignView.delegate = self
 		alignView.dataSource = self
 	}
@@ -74,6 +74,7 @@ class ViewController: UIViewController {
 	}
 
 	fileprivate func generatePositions() {
+        
 		for i in 0..<3 {
 
 			let y = ((height / 3 + 10) * CGFloat(i)) + 10
@@ -90,76 +91,49 @@ class ViewController: UIViewController {
 			}
 		}
 	}
+    
+    fileprivate func applyAnimation() {
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.7,
+                       options: [.curveEaseOut],
+                       animations: {
+                        self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
+                        
+        }, completion: nil)
+    }
 }
 
 extension ViewController: AlingmentViewDelegate {
     
 	func didSelectOptionFor(_ aligment: AlignmentMode) {
+        
 		switch aligment {
 		case .Left:
 			axisX = 0
-
-			UIView.animate(withDuration: 0.3,
-						   delay: 0,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 0.7,
-						   options: [.curveEaseOut],
-						   animations: {
-				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-
-			}, completion: nil)
+            applyAnimation()
+            
 		case .Center:
 			axisX = (width / 2) -  (self.redView.frame.width / 2) + 10
-			UIView.animate(withDuration: 0.3,
-						   delay: 0,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 0.7,
-						   options: [.curveEaseOut],
-						   animations: {
-				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}, completion: nil)
+			applyAnimation()
+            
 		case .Right:
 			axisX = width - self.redView.frame.width + 20
-			UIView.animate(withDuration: 0.3,
-						   delay: 0,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 0.7,
-						   options: [.curveEaseOut],
-						   animations: {
-				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}, completion: nil)
+			applyAnimation()
+            
 		case .Top:
 			axisY = 0
-			UIView.animate(withDuration: 0.3,
-						   delay: 0,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 0.7,
-						   options: [.curveEaseOut],
-						   animations: {
-				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}, completion: nil)
+			applyAnimation()
+            
 		case .Middle:
 			axisY = (height / 2) -  (self.redView.frame.height / 2) + 10
-
-			UIView.animate(withDuration: 0.3,
-						   delay: 0,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 0.7,
-						   options: [.curveEaseOut],
-						   animations: {
-				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}, completion: nil)
+            applyAnimation()
+            
 		case .Bottom:
 			axisY = height - self.redView.frame.height + 20
-
-			UIView.animate(withDuration: 0.3,
-						   delay: 0,
-						   usingSpringWithDamping: 0.7,
-						   initialSpringVelocity: 0.7,
-						   options: [.curveEaseOut],
-						   animations: {
-				self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-			}, completion: nil)
+            applyAnimation()
 		}
 	}
 }

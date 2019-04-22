@@ -134,7 +134,6 @@ open class AlingmentView: UIView {
 			item.backgroundColor = .clear
 		}
 	}
-
 }
 
 public protocol AlingmentViewDelegate: class {
@@ -144,4 +143,3 @@ public protocol AlingmentViewDelegate: class {
 public protocol AlingmentViewDataSource: class {
 	func optionsForAlignment() -> [AlignmentMode]
 }
-

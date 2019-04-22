@@ -79,11 +79,12 @@ class AlingmentItemView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-
+        
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
+        
 	}
 
 	convenience init(_ alignment: AlignmentMode) {
@@ -126,6 +127,7 @@ class AlingmentItemView: UIView {
 	}
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
 		parentView.zoomOut()
 		parentView.activeAligmentView = self
 		if let delegate = delegate {
