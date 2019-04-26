@@ -143,3 +143,7 @@ public protocol AlingmentViewDelegate: class {
 public protocol AlingmentViewDataSource: class {
 	func optionsForAlignment() -> [AlignmentMode]
 }
+
+public enum AlignmentMode: Int, CaseIterable {
+	case Left, Center, Right, Top, Middle, Bottom
+}
