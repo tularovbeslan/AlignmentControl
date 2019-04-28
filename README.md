@@ -31,7 +31,7 @@ pod 'AlignmentControl'
 
 Beslan Tularov | <a href="url"><img src="https://user-images.githubusercontent.com/4906243/54856729-037dcb00-4d0d-11e9-9d6f-8a5b8e316ff8.png" height="15"> </a> [@JiromTomson](https://twitter.com/JiromTomson)
 
-Mikhail Kupriyanov | <a href="url"><img src="https://user-images.githubusercontent.com/4906243/56862537-ae407380-69b4-11e9-9867-3ec2d09388a4.png" height="25"> </a> [mpkupriyanov](https://github.com/mpkupriyanov)
+Mikhail Kupriyanov | <a href="url"><img src="https://user-images.githubusercontent.com/4906243/56862537-ae407380-69b4-11e9-9867-3ec2d09388a4.png" height="20"> </a> [mpkupriyanov](https://github.com/mpkupriyanov)
 
 
 
