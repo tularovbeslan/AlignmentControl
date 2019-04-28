@@ -24,15 +24,17 @@ open class AlingmentView: UIView {
 	var activeAligmentView: AlingmentItemView! {
 		didSet {
 
-			if activeAligmentView == oldValue { return }
-			if oldValue != nil {
-				oldValue.hideAnimation()
-			}
-			activeAligmentView.presentAnimation()
+			//			if activeAligmentView == oldValue { return }
+			//			if oldValue != nil {
+			//				oldValue.hideAnimation()
+			//			}
+			//			activeAligmentView.presentAnimation()
 		}
 	}
 
 	private var items: [AlingmentItemView] = []
+
+	public var colorOfWards: UIColor = UIColor(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
 
 	fileprivate var backgroundImage: UIImageView = {
 
@@ -122,6 +124,7 @@ open class AlingmentView: UIView {
 			let item = AlingmentItemView(alignmentMode)
 			item.parentView = self
 			item.delegate = delegate
+			item.colorOfWards = colorOfWards
 			addSubview(item)
 			items.append(item)
 

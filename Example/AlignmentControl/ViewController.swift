@@ -12,6 +12,7 @@ import AlignmentControl
 class ViewController: UIViewController {
 
 	@IBOutlet weak var alignView: AlingmentView!
+	
 	var contentView: UIView!
 	var redView: UIView!
 
@@ -30,6 +31,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		alignView.colorOfWards = .red
 		alignView.setBackgroundImage(UIImage(named: "group"))
         alignView.delegate = self
 		alignView.dataSource = self

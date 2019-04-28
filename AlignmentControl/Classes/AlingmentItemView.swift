@@ -14,7 +14,7 @@ class AlingmentItemView: UIView {
 
 	unowned var parentView: AlingmentView!
 
-	@IBInspectable var colorOfWards: UIColor = UIColor.init(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
+	public var colorOfWards: UIColor!
 
 	var alignment: AlignmentMode = .Left
 
@@ -79,12 +79,12 @@ class AlingmentItemView: UIView {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-        
+
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-        
+
 	}
 
 	convenience init(_ alignment: AlignmentMode) {
@@ -93,32 +93,32 @@ class AlingmentItemView: UIView {
 		self.alignment = alignment
 	}
 
-	func presentAnimation() {
-
-		switch alignment {
-		case .Bottom, .Center, .Top:
-			makeWard(middleWardPath, delay: 0)
-			makeWard(shortWardPath, delay: 0.1)
-
-		default:
-			makeWard(shortWardPath, delay: 0.0)
-			makeWard(middleWardPath, delay: 0.1)
-		}
-	}
-
-	func hideAnimation() {
-
-		switch alignment {
-		case .Bottom, .Center, .Top:
-			hideWard(activeWard.first!, delay: 0)
-			hideWard(activeWard.last!, delay: 0.1)
-
-		default:
-			hideWard(activeWard.last!, delay: 0)
-			hideWard(activeWard.first!, delay: 0.1)
-		}
-		activeWard.removeAll()
-	}
+	//	func presentAnimation() {
+	//
+	//		switch alignment {
+	//		case .Bottom, .Center, .Top:
+	//			makeWard(middleWardPath, delay: 0)
+	//			makeWard(shortWardPath, delay: 0.1)
+	//
+	//		default:
+	//			makeWard(shortWardPath, delay: 0.0)
+	//			makeWard(middleWardPath, delay: 0.1)
+	//		}
+	//	}
+	//
+	//	func hideAnimation() {
+	//
+	//		switch alignment {
+	//		case .Bottom, .Center, .Top:
+	//			hideWard(activeWard.first!, delay: 0)
+	//			hideWard(activeWard.last!, delay: 0.1)
+	//
+	//		default:
+	//			hideWard(activeWard.last!, delay: 0)
+	//			hideWard(activeWard.first!, delay: 0.1)
+	//		}
+	//		activeWard.removeAll()
+	//	}
 
 	// MARK: - Private
 
@@ -127,7 +127,7 @@ class AlingmentItemView: UIView {
 	}
 
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+
 		parentView.zoomOut()
 		parentView.activeAligmentView = self
 		if let delegate = delegate {
