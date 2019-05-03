@@ -31,7 +31,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		alignView.colorOfWards = .red
+        alignView.colorOfWards = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
+        alignView.activeColorOfWards = UIColor(red: 102/255.0, green: 51/255.0, blue: 204/255.0, alpha: 1)
 		alignView.setBackgroundImage(UIImage(named: "group"))
         alignView.delegate = self
 		alignView.dataSource = self
@@ -70,7 +71,7 @@ class ViewController: UIViewController {
 									   width: width / 3,
 									   height: height / 3))
 		redView.layer.cornerRadius = 20
-		redView.backgroundColor = .red
+		redView.backgroundColor = UIColor(red: 255/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
 		redView.clipsToBounds = true
 		contentView.addSubview(redView)
 	}

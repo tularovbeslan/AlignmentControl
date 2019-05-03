@@ -16,12 +16,18 @@ class AlingmentItemView: UIView {
 
 	public var colorOfWards: UIColor!
 
+    public var activeColorOfWards: UIColor!
+    
 	var alignment: AlignmentMode = .Left
 
-	private var activeWard: [CAShapeLayer] = []
-	private var longWardPath: UIBezierPath!
+	fileprivate var activeMiddleWard: CAShapeLayer!
+    fileprivate var activeShortWard: CAShapeLayer!
+    
+    fileprivate var animator: Animationable!
+    
+	fileprivate var longWardPath: UIBezierPath!
 	private var middleWardPath: UIBezierPath!
-	private var shortWardPath: UIBezierPath!
+	fileprivate var shortWardPath: UIBezierPath!
 
 	private var longWardWidth: CGFloat {
 
@@ -91,34 +97,15 @@ class AlingmentItemView: UIView {
 		self.init()
 
 		self.alignment = alignment
+        switch alignment {
+        case .Left, .Center, .Right:
+            self.clipsToBounds = true
+            
+        default:
+            break
+        }
+        
 	}
-
-	//	func presentAnimation() {
-	//
-	//		switch alignment {
-	//		case .Bottom, .Center, .Top:
-	//			makeWard(middleWardPath, delay: 0)
-	//			makeWard(shortWardPath, delay: 0.1)
-	//
-	//		default:
-	//			makeWard(shortWardPath, delay: 0.0)
-	//			makeWard(middleWardPath, delay: 0.1)
-	//		}
-	//	}
-	//
-	//	func hideAnimation() {
-	//
-	//		switch alignment {
-	//		case .Bottom, .Center, .Top:
-	//			hideWard(activeWard.first!, delay: 0)
-	//			hideWard(activeWard.last!, delay: 0.1)
-	//
-	//		default:
-	//			hideWard(activeWard.last!, delay: 0)
-	//			hideWard(activeWard.first!, delay: 0.1)
-	//		}
-	//		activeWard.removeAll()
-	//	}
 
 	// MARK: - Private
 
@@ -129,12 +116,12 @@ class AlingmentItemView: UIView {
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
 		parentView.zoomOut()
-		parentView.activeAligmentView = self
+        setActiveAligment()
 		if let delegate = delegate {
 			delegate.didSelectOptionFor(alignment)
 		}
 	}
-
+    
 	override func draw(_ rect: CGRect) {
 		super.draw(rect)
 
@@ -146,6 +133,9 @@ class AlingmentItemView: UIView {
 		case .Middle: drawMiddle(frame: rect)
 		case .Bottom: drawBottom(frame: rect)
 		}
+        
+        makeActiveWard(middle: middleWardPath, short: shortWardPath)
+        makeAnimator()
 	}
 
 	func drawLeft(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
@@ -311,51 +301,116 @@ class AlingmentItemView: UIView {
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
+    
+    fileprivate func setActiveAligment() {
+        
+        switch alignment {
+        case .Left, .Center, .Right:
+            parentView.activeAligmentX = self
+            
+        default:
+            parentView.activeAligmentY = self
+        }
+    }
 }
 
-extension AlingmentItemView: CAAnimationDelegate {
+extension AlingmentItemView {
 
-	func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    // MARK: - Create active ward
+    
+    fileprivate func makeActiveWard(middle: UIBezierPath,
+                                    short: UIBezierPath) {
+        
+        activeMiddleWard = makeShapeLayer(middle)
+        activeShortWard = makeShapeLayer(short)
+    }
+    
+    private func makeShapeLayer(_ ward: UIBezierPath) -> CAShapeLayer {
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = ward.cgPath
+        shapeLayer.fillColor = activeColorOfWards.cgColor
+        switch alignment {
+        case .Center,
+            .Right:
+            shapeLayer.position.x -= self.bounds.size.width
+            
+        case .Middle,
+             .Bottom:
+            shapeLayer.position.y -= superview?.bounds.size.height ?? bounds.size.height + 10
+            
+        default:
+            break
+        }
+        self.layer.addSublayer(shapeLayer)
+        return shapeLayer
+    }
+    
+    // MARK: - Create animator
+    
+    private func makeAnimator() {
+        
+        let offsetY = superview?.bounds.size.height ?? bounds.size.height + 10
+        animator = Animator(alignment: alignment,
+                            offsetX: bounds.size.width,
+                            offsetY: offsetY,
+                            activeMiddleWard: activeMiddleWard,
+                            activeShortWard: activeShortWard)
+    }
+}
 
-		guard let layer = anim.value(forKey: "removeLayer") as? CAShapeLayer else { return }
-		layer.removeFromSuperlayer()
-	}
-
-	fileprivate func makeWard(_ ward: UIBezierPath, delay: CFTimeInterval) {
-
-		let wardShapeLayer = CAShapeLayer()
-		wardShapeLayer.path = ward.cgPath
-		wardShapeLayer.fillColor = UIColor.red.cgColor
-		self.layer.addSublayer(wardShapeLayer)
-		activeWard.append(wardShapeLayer)
-
-		let animation = CASpringAnimation(keyPath: "position.y")
-		animation.fromValue =  wardShapeLayer.position.y - 50.0
-		animation.toValue = wardShapeLayer.position.y
-		animation.initialVelocity = 10.0
-		animation.mass = 1.0
-		animation.stiffness = 100.0
-		animation.damping = 10.0
-		animation.duration = animation.settlingDuration
-		animation.beginTime = CACurrentMediaTime() + delay
-		animation.isRemovedOnCompletion = true
-		wardShapeLayer.add(animation, forKey: nil)
-	}
-
-	fileprivate func hideWard(_ ward: CAShapeLayer, delay: CFTimeInterval) {
-
-		let animation = CASpringAnimation(keyPath: "position.y")
-		animation.delegate = self
-		animation.setValue(ward, forKey: "removeLayer")
-		animation.fromValue = ward.position.y
-		animation.toValue = ward.position.y + 50.0
-		animation.initialVelocity = 10.0
-		animation.mass = 1.0
-		animation.stiffness = 100.0
-		animation.damping = 10.0
-		animation.duration = animation.settlingDuration
-		animation.beginTime = CACurrentMediaTime() + delay
-		animation.isRemovedOnCompletion = true
-		ward.add(animation, forKey: nil)
-	}
+extension AlingmentItemView {
+    
+    // MARK: - Animation by axe X
+    
+    func leftToCenter() {
+        animator.leftToCenter()
+    }
+    
+     func leftToRight() {
+        animator.leftToRight()
+    }
+    
+    func rightToLeft() {
+        animator.rightToLeft()
+    }
+    
+    func centerToRight() {
+        animator.centerToRight()
+    }
+    
+    func rightToCenter() {
+        animator.rightToCenter()
+    }
+    
+    func centerToLeft() {
+        animator.centerToLeft()
+    }
+ 
+    // MARK: - Animation by axe Y
+    
+    func topToMiddle() {
+        animator.topToMiddle()
+    }
+    
+    func topToBottom() {
+        animator.topToBottom()
+    }
+    
+    func bottomToTop() {
+        animator.bottomToTop()
+    }
+    
+    func middleToBottom() {
+        animator.middleToBottom()
+    }
+    
+    func bottomToMiddle() {
+        animator.bottomToMiddle()
+    }
+    
+    func middleToTop() {
+        animator.middleToTop()
+    }
+    
 }
