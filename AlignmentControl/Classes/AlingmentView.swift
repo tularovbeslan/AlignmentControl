@@ -21,99 +21,17 @@ open class AlingmentView: UIView {
 		}
 	}
 
-   var activeAligmentX: AlingmentItemView? {
-        
-        didSet {
-            guard let oldValue = oldValue else { return }
-            
-            if oldValue.alignment == .Left
-                && activeAligmentX?.alignment == .Center {
-                oldValue.leftToCenter()
-                activeAligmentX?.leftToCenter()
-            }
-            if oldValue.alignment == .Center
-                && activeAligmentX?.alignment == .Left {
-                oldValue.centerToLeft()
-                activeAligmentX?.centerToLeft()
-            }
-            if oldValue.alignment == .Center
-                && activeAligmentX?.alignment == .Right {
-                oldValue.centerToRight()
-                activeAligmentX?.centerToRight()
-            }
-            if oldValue.alignment == .Right
-                && activeAligmentX?.alignment == .Center {
-                oldValue.rightToCenter()
-                activeAligmentX?.rightToCenter()
-            }
-            if oldValue.alignment == .Right
-                && activeAligmentX?.alignment == .Left {
-                oldValue.rightToLeft()
-                if let center = aligmentItems.first(where: { $0.alignment == .Center }) {
-                    center.rightToLeft()
-                }
-                activeAligmentX?.rightToLeft()
-            }
-            if oldValue.alignment == .Left
-                && activeAligmentX?.alignment == .Right {
-                oldValue.leftToRight()
-                if let center = aligmentItems.first(where: { $0.alignment == .Center }) {
-                    center.leftToRight()
-                }
-                activeAligmentX?.leftToRight()
-            }
-        }
-    }
-    
-    var activeAligmentY: AlingmentItemView? {
-        
-        didSet {
-            guard let oldValue = oldValue else { return }
-            
-            if oldValue.alignment == .Top
-                && activeAligmentY?.alignment == .Middle {
-                oldValue.topToMiddle()
-                activeAligmentY?.topToMiddle()
-            }
-            if oldValue.alignment == .Middle
-                && activeAligmentY?.alignment == .Top {
-                oldValue.middleToTop()
-                activeAligmentY?.middleToTop()
-            }
-            if oldValue.alignment == .Middle
-                && activeAligmentY?.alignment == .Bottom {
-                oldValue.middleToBottom()
-                activeAligmentY?.middleToBottom()
-            }
-            if oldValue.alignment == .Bottom
-                && activeAligmentY?.alignment == .Middle {
-                oldValue.bottomToMiddle()
-                activeAligmentY?.bottomToMiddle()
-            }
-            if oldValue.alignment == .Bottom
-                && activeAligmentY?.alignment == .Top {
-                oldValue.bottomToTop()
-                if let center = aligmentItems.first(where: { $0.alignment == .Middle }) {
-                    center.bottomToTop()
-                }
-                activeAligmentY?.bottomToTop()
-            }
-            if oldValue.alignment == .Top
-                && activeAligmentY?.alignment == .Bottom {
-                oldValue.topToBottom()
-                if let center = aligmentItems.first(where: { $0.alignment == .Middle }) {
-                    center.topToBottom()
-                }
-                activeAligmentY?.topToBottom()
-            }
-        }
-    }
+	public var activeAligmentModes: [AlignmentMode] = [.Left]
+	public var animation: AnimationType = .Bounce
+	public var isPulse: Bool = true
+	private var horizontalMiddleWard: UIView!
+	private var horizontalShortWard: UIView!
+	private var verticalMiddleWard: UIView!
+	private var verticalShortWard: UIView!
 
-	private var aligmentItems: [AlingmentItemView] = []
+	private var items: [AlingmentItemView] = []
 
 	public var colorOfWards: UIColor = UIColor(red: 220/255.0, green: 224/255.0, blue: 236/255.0, alpha: 1)
-    
-    public var activeColorOfWards: UIColor = UIColor(red: 255/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
 
 	fileprivate var backgroundImage: UIImageView = {
 
@@ -121,6 +39,48 @@ open class AlingmentView: UIView {
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 		return imageView
 	}()
+
+	fileprivate func frameForWards(_ item: AlingmentItemView) -> (middle: CGRect, short: CGRect)? {
+
+		guard let modes = alignmentModes else { return nil }
+		let count = CGFloat(modes.count)
+
+		let itemWidth: CGFloat = (frame.width / count)
+		let topPadding: CGFloat =  (frame.height - (frame.height > itemWidth ? itemWidth : frame.height) * 0.80) / 2
+		let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.80
+		let padding =  (frame.width - (length * count)) / count
+		let offset: CGFloat = ((padding + length) * CGFloat(item.index)) + (padding / 2)
+
+		let middleWardPathFrame = convert(item.middleWardPath.cgPath.boundingBox, to: self)
+		let shortWardPathFrame = convert(item.shortWardPath.cgPath.boundingBox, to: self)
+
+		let middleFrame = CGRect(x: middleWardPathFrame.origin.x + offset, y: middleWardPathFrame.origin.y + topPadding, width: middleWardPathFrame.width, height: middleWardPathFrame.height)
+
+		let shortFrame = CGRect(x: shortWardPathFrame.origin.x + offset, y: shortWardPathFrame.origin.y + topPadding, width: shortWardPathFrame.width, height: shortWardPathFrame.height)
+
+		return (middle: middleFrame, short: shortFrame)
+	}
+
+	fileprivate func createWardsFor(_ item: AlingmentItemView) -> (middle: UIView, short: UIView)? {
+
+		guard let frame = frameForWards(item) else { return nil }
+
+		let middle = UIView()
+		middle.frame = frame.middle
+		middle.backgroundColor = UIColor.red
+		middle.layer.cornerRadius = item.middleWardRadius
+		middle.clipsToBounds = true
+		middle.isUserInteractionEnabled = false
+
+		let short = UIView()
+		short.frame = frame.short
+		short.backgroundColor = UIColor.red
+		short.layer.cornerRadius = item.shortWardRadius
+		short.clipsToBounds = true
+		short.isUserInteractionEnabled = false
+
+		return (middle: middle, short: short)
+	}
 
 	open func setBackgroundImage(_ image: UIImage?) {
 		backgroundImage.image = image
@@ -135,6 +95,10 @@ open class AlingmentView: UIView {
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+			self.createActiveWards()
+		}
 	}
 
 	override init(frame: CGRect) {
@@ -144,28 +108,35 @@ open class AlingmentView: UIView {
 		addSubview(backgroundImage)
 		setupBackgroundImageConstraints()
 		setupItems()
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+			self.createActiveWards()
+		}
+	}
+
+	private convenience init() {
+		self.init()
+	}
+
+	convenience init(activeAligmentModes: [AlignmentMode], animation: AnimationType) {
+		self.init()
+		self.activeAligmentModes = activeAligmentModes
+		self.animation = animation
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
+
 	// MARK: - Private
-    
-    // MARK: - Animation
-    
-    private enum ZoomAnimation {
-        static let duration = 0.3
-        static let normalValue = 1.0
-        static let inValue = 0.98
-    }
-    
+
 	func zoomIn() {
 
 		let animation = CABasicAnimation(keyPath: "transform.scale")
-		animation.fromValue = ZoomAnimation.normalValue
-		animation.toValue = ZoomAnimation.inValue
-		animation.duration = ZoomAnimation.duration
+		animation.fromValue = 1.0
+		animation.toValue = 0.98
+		animation.duration = 0.3
 		animation.fillMode = .forwards
 		animation.isRemovedOnCompletion = false
 		animation.autoreverses = false
@@ -175,17 +146,15 @@ open class AlingmentView: UIView {
 	func zoomOut() {
 
 		let animation = CABasicAnimation(keyPath: "transform.scale")
-		animation.fromValue = ZoomAnimation.inValue
-		animation.toValue = ZoomAnimation.normalValue
-		animation.duration = ZoomAnimation.duration
+		animation.fromValue = 0.98
+		animation.toValue = 1.0
+		animation.duration = 0.3
 		animation.fillMode = .forwards
 		animation.isRemovedOnCompletion = false
 		animation.autoreverses = false
 		layer.add(animation, forKey: "zoomOut")
 	}
 
-    // MARK: - Setup
-    
 	fileprivate func setupBackgroundImageConstraints() {
 
 		backgroundImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -198,57 +167,266 @@ open class AlingmentView: UIView {
 
 		guard let modes = alignmentModes else { return }
 		let count = CGFloat(modes.count)
-        
-        let itemWidth: CGFloat = (frame.width / count)
-        let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.80
-        let padding =  (frame.width - (length * count)) / count
-        let width: CGFloat = length
-        let height: CGFloat = length
-        
 		for (index, mode) in modes.enumerated() {
 
-           let item = makeAligmentItem(mode)
-			addSubview(item)
-			aligmentItems.append(item)
+			let itemWidth: CGFloat = (frame.width / count)
 
-            setupDefaultActiveItem(item)
-          
-            let offset: CGFloat = ((padding + length) * CGFloat(index)) + (padding / 2)
-            item.translatesAutoresizingMaskIntoConstraints = false
-            item.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
-            item.widthAnchor.constraint(equalToConstant: width).isActive = true
-            item.heightAnchor.constraint(equalToConstant: height).isActive = true
-            item.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+			let length: CGFloat = (frame.height > itemWidth ? itemWidth : frame.height) * 0.80
+
+			let padding =  (frame.width - (length * count)) / count
+			let offset: CGFloat = ((padding + length) * CGFloat(index)) + (padding / 2)
+
+			let width: CGFloat = length
+			let height: CGFloat = length
+
+			let item = AlingmentItemView()
+			item.mode = mode
+			item.index = index
+			item.delegate = self
+			item.colorOfWards = colorOfWards
+			addSubview(item)
+			items.append(item)
+
+			item.translatesAutoresizingMaskIntoConstraints = false
+			item.leftAnchor.constraint(equalTo: leftAnchor, constant: offset).isActive = true
+			item.widthAnchor.constraint(equalToConstant: width).isActive = true
+			item.heightAnchor.constraint(equalToConstant: height).isActive = true
+			item.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
 			item.backgroundColor = .clear
 		}
 	}
-    
-    fileprivate func makeAligmentItem(_ mode: AlignmentMode) -> AlingmentItemView {
-        
-        let item = AlingmentItemView(mode)
-        item.parentView = self
-        item.delegate = delegate
-        item.colorOfWards = colorOfWards
-        item.activeColorOfWards = activeColorOfWards
-        return item
-    }
-    
-    fileprivate func setupDefaultActiveItem(_ item: AlingmentItemView) {
-        
-        switch item.alignment {
-        case .Left:
-            activeAligmentX = item
-        case .Top:
-            activeAligmentY = item
-        default:
-            break
-        }
-    }
+
+	/// Create UIView for all active modes
+	fileprivate func createActiveWards() {
+
+		activeAligmentModes.forEach { (mode) in
+
+			items.forEach({ (item) in
+
+				if item.mode == mode {
+
+					guard let wards: (middle: UIView, short: UIView) = createWardsFor(item) else { return }
+
+					switch item.direction {
+					case .Horizontal:
+						horizontalMiddleWard = wards.middle
+						horizontalShortWard = wards.short
+						addSubview(horizontalMiddleWard)
+						addSubview(horizontalShortWard)
+
+					case .Vertical:
+						verticalMiddleWard = wards.middle
+						verticalShortWard = wards.short
+						addSubview(verticalMiddleWard)
+						addSubview(verticalShortWard)
+					}
+				}
+			})
+		}
+	}
 }
 
+extension AlingmentView: AlingmentItemViewDelegate {
+
+	public func touchesBegan() {
+		if isPulse { zoomIn() }
+	}
+
+	public func touchesEnded() {
+		if isPulse { zoomOut() }
+	}
+
+	public func didSelectOptionFor(_ alingmentItemView: AlingmentItemView, mode: AlignmentMode) {
+		delegate?.didSelectOptionFor(mode)
+
+		guard let frame = frameForWards(alingmentItemView) else { return }
+
+
+		switch animation {
+		case .None: noneAnimation(frame, view: alingmentItemView)
+		case .Fade: fadeAnimation(frame, view: alingmentItemView)
+		case .Translation: transitionAnimation(frame, view: alingmentItemView)
+		case .Bounce: bounceAnimation(frame, view: alingmentItemView)
+		}
+	}
+
+	fileprivate func noneAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
+
+		guard let frame = frameForWards(view) else { return }
+
+		if horizontalMiddleWard.frame != frame.middle {
+
+			switch view.direction {
+			case .Horizontal:
+				horizontalMiddleWard.frame = frame.middle
+				horizontalShortWard.frame = frame.short
+
+			case .Vertical:
+				verticalMiddleWard.frame = frame.middle
+				verticalShortWard.frame = frame.short
+			}
+		}
+	}
+
+	// MARK: Fade Animation
+	fileprivate func fadeAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
+
+		guard let frame = frameForWards(view) else { return }
+
+		if horizontalMiddleWard.frame != frame.middle {
+
+			switch view.direction {
+			case .Horizontal: fadeAnimation(frame)
+			case .Vertical: fadeAnimation(frame)
+			}
+		}
+	}
+
+	fileprivate func fadeAnimation(_ frame: (middle: CGRect, short: CGRect)) {
+
+		UIView.animate(withDuration: 0.25, animations: {
+
+			self.horizontalMiddleWard.alpha = 0
+			self.horizontalShortWard.alpha = 0
+		}) { _ in
+
+			self.horizontalMiddleWard.frame = frame.middle
+			self.horizontalShortWard.frame = frame.short
+
+			UIView.animate(withDuration: 0.25, animations: {
+
+				self.horizontalMiddleWard.alpha = 1
+				self.horizontalShortWard.alpha = 1
+			})
+		}
+
+	}
+
+	// MARK: Transition Animation
+	fileprivate func transitionAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
+
+		switch view.direction {
+		case .Horizontal:
+
+			UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: {
+				self.horizontalMiddleWard.frame = frame.middle
+				UIView.animate(withDuration: 0.25, delay: 0.1, options: [.curveEaseInOut], animations: {
+					self.horizontalShortWard.frame = frame.short
+				}, completion: nil)
+			}, completion: nil)
+
+		case .Vertical:
+
+			print("ljh")
+		}
+	}
+
+	// MARK: Bounce Animation
+	fileprivate func bounceAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
+
+		switch view.direction {
+		case .Horizontal:
+
+			let positionXKeyframe = CAKeyframeAnimation(keyPath: "position.x")
+			positionXKeyframe.values = [horizontalMiddleWard.frame.origin.x,
+										frame.middle.origin.x,
+										frame.middle.origin.x - (frame.middle.width * 0.65),
+										frame.middle.origin.x,
+										frame.middle.origin.x - (frame.middle.width * 0.28),
+										frame.middle.origin.x,
+										frame.middle.origin.x - (frame.middle.width * 0.02),
+										frame.middle.origin.x]
+			positionXKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
+			positionXKeyframe.duration = 1
+			//			positionXKeyframe.fillMode = .forwards
+			positionXKeyframe.timingFunctions = timingFunctions()
+			//			positionXKeyframe.isRemovedOnCompletion = false
+
+			horizontalMiddleWard.layer.add(positionXKeyframe, forKey: "horizontalMiddleWard")
+			horizontalMiddleWard.layer.frame = frame.middle
+
+			DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+
+				let positionXKeyframe = CAKeyframeAnimation(keyPath: "position.x")
+				positionXKeyframe.values = [self.horizontalShortWard.frame.origin.x,
+											frame.short.origin.x,
+											frame.short.origin.x - (frame.middle.width * 0.65),
+											frame.short.origin.x,
+											frame.short.origin.x - (frame.middle.width * 0.28),
+											frame.short.origin.x,
+											frame.short.origin.x - (frame.middle.width * 0.02),
+											frame.short.origin.x]
+				positionXKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
+				positionXKeyframe.duration = 1
+				//				positionXKeyframe.fillMode = .forwards
+				positionXKeyframe.timingFunctions = self.timingFunctions()
+				//				positionXKeyframe.isRemovedOnCompletion = false
+
+				self.horizontalShortWard.layer.add(positionXKeyframe, forKey: "horizontalShortWard")
+				self.horizontalShortWard.layer.frame = frame.short
+
+			}
+
+		case .Vertical:
+
+			let positionYKeyframe = CAKeyframeAnimation(keyPath: "position.y")
+			positionYKeyframe.values = [verticalMiddleWard.frame.origin.y - (verticalMiddleWard.frame.height + 50),
+										frame.middle.origin.y,
+										frame.middle.origin.y - (frame.middle.width * 0.65),
+										frame.middle.origin.y,
+										frame.middle.origin.y - (frame.middle.width * 0.28),
+										frame.middle.origin.y,
+										frame.middle.origin.y - (frame.middle.width * 0.02),
+										frame.middle.origin.y]
+			positionYKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
+			positionYKeyframe.duration = 1
+			positionYKeyframe.fillMode = .forwards
+			positionYKeyframe.timingFunctions = timingFunctions()
+			positionYKeyframe.isRemovedOnCompletion = false
+
+			verticalMiddleWard.layer.add(positionYKeyframe, forKey: "verticalMiddleWard")
+			verticalMiddleWard.layer.frame = frame.middle
+
+			DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+
+				let positionYKeyframe = CAKeyframeAnimation(keyPath: "position.y")
+				positionYKeyframe.values = [self.verticalShortWard.frame.origin.y - (self.verticalShortWard.frame.height + 50),
+											frame.short.origin.y,
+											frame.short.origin.y - (frame.short.width * 0.65),
+											frame.short.origin.y,
+											frame.short.origin.y - (frame.short.width * 0.28),
+											frame.short.origin.y,
+											frame.short.origin.y - (frame.short.width * 0.02),
+											frame.short.origin.y]
+				positionYKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
+				positionYKeyframe.duration = 1
+				positionYKeyframe.fillMode = .forwards
+				positionYKeyframe.timingFunctions = self.timingFunctions()
+				positionYKeyframe.isRemovedOnCompletion = false
+
+				self.verticalShortWard.layer.add(positionYKeyframe, forKey: "verticalShortWard")
+				self.verticalShortWard.layer.frame = frame.short
+			}
+		}
+	}
+
+	fileprivate func timingFunctions() -> [CAMediaTimingFunction]? {
+
+		return [CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)]
+	}
+}
+
+
 public protocol AlingmentViewDelegate: class {
-	func didSelectOptionFor(_ aligment: AlignmentMode)
+	func didSelectOptionFor(_ mode: AlignmentMode)
 }
 
 public protocol AlingmentViewDataSource: class {
@@ -257,4 +435,12 @@ public protocol AlingmentViewDataSource: class {
 
 public enum AlignmentMode: Int, CaseIterable {
 	case Left, Center, Right, Top, Middle, Bottom
+}
+
+public 	enum AnimationType {
+	case Fade, Translation, Bounce, None
+}
+
+public enum AlignmentDirection: Int, CaseIterable {
+	case Horizontal, Vertical
 }

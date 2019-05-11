@@ -7,41 +7,48 @@
 
 import UIKit
 
-@IBDesignable
-class AlingmentItemView: UIView {
+public protocol AlingmentItemViewDelegate: class {
+	func didSelectOptionFor(_ alingmentItemView: AlingmentItemView, mode: AlignmentMode)
+	func touchesBegan()
+	func touchesEnded()
+}
 
-	weak var delegate: AlingmentViewDelegate?
+open class AlingmentItemView: UIView {
 
-	unowned var parentView: AlingmentView!
+	weak var delegate: AlingmentItemViewDelegate?
 
 	public var colorOfWards: UIColor!
 
-    public var activeColorOfWards: UIColor!
-    
-	var alignment: AlignmentMode = .Left
+	var mode: AlignmentMode = .Left  {
+		didSet {
+			switch mode {
+			case .Left, .Center, .Right:
+				direction = .Horizontal
+			case .Top, .Middle, .Bottom:
+				direction = .Vertical
+			}
+		}
+	}
 
-	fileprivate var activeMiddleWard: CAShapeLayer!
-    fileprivate var activeShortWard: CAShapeLayer!
-    
-    fileprivate var animator: Animationable!
-    
-	fileprivate var longWardPath: UIBezierPath!
-	private var middleWardPath: UIBezierPath!
-	fileprivate var shortWardPath: UIBezierPath!
+	var direction: AlignmentDirection = .Horizontal
+
+	public var longWardPath: UIBezierPath!
+	public var middleWardPath: UIBezierPath!
+	public var shortWardPath: UIBezierPath!
 
 	private var longWardWidth: CGFloat {
 
-		switch alignment {
-		case .Left, .Center, .Right: return frame.width * 0.10
-		case .Top, .Middle, .Bottom: return frame.width
+		switch direction {
+		case .Horizontal: return frame.width * 0.10
+		case .Vertical: return frame.width
 		}
 	}
 
 	private var longWardHeight: CGFloat {
 
-		switch alignment {
-		case .Left, .Center, .Right: return frame.height
-		case .Top, .Middle, .Bottom: return frame.height * 0.10
+		switch direction {
+		case .Horizontal: return frame.height
+		case .Vertical: return frame.height * 0.10
 		}
 	}
 
@@ -49,83 +56,58 @@ class AlingmentItemView: UIView {
 
 	private var middleWardWidth: CGFloat {
 
-		switch alignment {
-		case .Left, .Center, .Right: return frame.width * 0.60
-		case .Top, .Middle, .Bottom: return frame.height / 5
+		switch direction {
+		case .Horizontal: return frame.width * 0.60
+		case .Vertical: return frame.height / 5
 		}
 	}
 
 	private var middleWardHeight: CGFloat {
 
-		switch alignment {
-		case .Left, .Center, .Right: return frame.height / 5
-		case .Top, .Middle, .Bottom: return frame.height * 0.60
+		switch direction {
+		case .Horizontal: return frame.height / 5
+		case .Vertical: return frame.height * 0.60
 		}
 	}
 
-	private var middleWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
+	public var middleWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
 
 	private var shortWardWidth: CGFloat {
 
-		switch alignment {
-		case .Left, .Center, .Right: return frame.width * 0.40
-		case .Top, .Middle, .Bottom: return frame.height / 5
+		switch direction {
+		case .Horizontal: return frame.width * 0.40
+		case .Vertical: return frame.height / 5
 		}
 	}
 
 	private var shortWardHeight: CGFloat {
 
-		switch alignment {
-		case .Left, .Center, .Right: return frame.height / 5
-		case .Top, .Middle, .Bottom: return frame.height * 0.40
+		switch direction {
+		case .Horizontal: return frame.height / 5
+		case .Vertical: return frame.height * 0.40
 		}
 	}
 
-	private var shortWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
-
-	override init(frame: CGRect) {
-		super.init(frame: frame)
-
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-
-	}
-
-	convenience init(_ alignment: AlignmentMode) {
-		self.init()
-
-		self.alignment = alignment
-        switch alignment {
-        case .Left, .Center, .Right:
-            self.clipsToBounds = true
-            
-        default:
-            break
-        }
-        
-	}
+	public var index: Int = 0
+	public var shortWardRadius: CGFloat { return (frame.height / 5) * 0.3 }
 
 	// MARK: - Private
 
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		parentView.zoomIn()
+	override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		delegate?.touchesBegan()
 	}
 
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+	override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-		parentView.zoomOut()
-        setActiveAligment()
-		if let delegate = delegate {
-			delegate.didSelectOptionFor(alignment)
-		}
+		delegate?.touchesEnded()
+		delegate?.didSelectOptionFor(self, mode: mode)
 	}
-    
-	override func draw(_ rect: CGRect) {
+
+
+	override open func draw(_ rect: CGRect) {
 		super.draw(rect)
 
-		switch alignment {
+		switch mode {
 		case .Left: drawLeft(frame: rect)
 		case .Center: drawCenter(frame: rect)
 		case .Right: drawRight(frame: rect)
@@ -133,9 +115,6 @@ class AlingmentItemView: UIView {
 		case .Middle: drawMiddle(frame: rect)
 		case .Bottom: drawBottom(frame: rect)
 		}
-        
-        makeActiveWard(middle: middleWardPath, short: shortWardPath)
-        makeAnimator()
 	}
 
 	func drawLeft(frame: CGRect = CGRect(x: 0, y: 0, width: 48, height: 48)) {
@@ -301,116 +280,4 @@ class AlingmentItemView: UIView {
 		colorOfWards.setFill()
 		shortWardPath.fill()
 	}
-    
-    fileprivate func setActiveAligment() {
-        
-        switch alignment {
-        case .Left, .Center, .Right:
-            parentView.activeAligmentX = self
-            
-        default:
-            parentView.activeAligmentY = self
-        }
-    }
-}
-
-extension AlingmentItemView {
-
-    // MARK: - Create active ward
-    
-    fileprivate func makeActiveWard(middle: UIBezierPath,
-                                    short: UIBezierPath) {
-        
-        activeMiddleWard = makeShapeLayer(middle)
-        activeShortWard = makeShapeLayer(short)
-    }
-    
-    private func makeShapeLayer(_ ward: UIBezierPath) -> CAShapeLayer {
-        
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.path = ward.cgPath
-        shapeLayer.fillColor = activeColorOfWards.cgColor
-        switch alignment {
-        case .Center,
-            .Right:
-            shapeLayer.position.x -= self.bounds.size.width
-            
-        case .Middle,
-             .Bottom:
-            shapeLayer.position.y -= superview?.bounds.size.height ?? bounds.size.height + 10
-            
-        default:
-            break
-        }
-        self.layer.addSublayer(shapeLayer)
-        return shapeLayer
-    }
-    
-    // MARK: - Create animator
-    
-    private func makeAnimator() {
-        
-        let offsetY = superview?.bounds.size.height ?? bounds.size.height + 10
-        animator = Animator(alignment: alignment,
-                            offsetX: bounds.size.width,
-                            offsetY: offsetY,
-                            activeMiddleWard: activeMiddleWard,
-                            activeShortWard: activeShortWard)
-    }
-}
-
-extension AlingmentItemView {
-    
-    // MARK: - Animation by axe X
-    
-    func leftToCenter() {
-        animator.leftToCenter()
-    }
-    
-     func leftToRight() {
-        animator.leftToRight()
-    }
-    
-    func rightToLeft() {
-        animator.rightToLeft()
-    }
-    
-    func centerToRight() {
-        animator.centerToRight()
-    }
-    
-    func rightToCenter() {
-        animator.rightToCenter()
-    }
-    
-    func centerToLeft() {
-        animator.centerToLeft()
-    }
- 
-    // MARK: - Animation by axe Y
-    
-    func topToMiddle() {
-        animator.topToMiddle()
-    }
-    
-    func topToBottom() {
-        animator.topToBottom()
-    }
-    
-    func bottomToTop() {
-        animator.bottomToTop()
-    }
-    
-    func middleToBottom() {
-        animator.middleToBottom()
-    }
-    
-    func bottomToMiddle() {
-        animator.bottomToMiddle()
-    }
-    
-    func middleToTop() {
-        animator.middleToTop()
-    }
-    
 }
