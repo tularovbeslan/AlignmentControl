@@ -277,27 +277,27 @@ extension AlingmentView: AlingmentItemViewDelegate {
 		if horizontalMiddleWard.frame != frame.middle {
 
 			switch view.direction {
-			case .Horizontal: fadeAnimation(frame)
-			case .Vertical: fadeAnimation(frame)
+			case .Horizontal: fadeAnimation(frame, middleView: horizontalMiddleWard, shortView: horizontalShortWard)
+			case .Vertical: fadeAnimation(frame, middleView: verticalMiddleWard, shortView: verticalShortWard)
 			}
 		}
 	}
 
-	fileprivate func fadeAnimation(_ frame: (middle: CGRect, short: CGRect)) {
+	fileprivate func fadeAnimation(_ frame: (middle: CGRect, short: CGRect), middleView: UIView, shortView: UIView) {
 
 		UIView.animate(withDuration: 0.25, animations: {
 
-			self.horizontalMiddleWard.alpha = 0
-			self.horizontalShortWard.alpha = 0
+			middleView.alpha = 0
+			shortView.alpha = 0
 		}) { _ in
 
-			self.horizontalMiddleWard.frame = frame.middle
-			self.horizontalShortWard.frame = frame.short
+			middleView.frame = frame.middle
+			shortView.frame = frame.short
 
 			UIView.animate(withDuration: 0.25, animations: {
 
-				self.horizontalMiddleWard.alpha = 1
-				self.horizontalShortWard.alpha = 1
+				middleView.alpha = 1
+				shortView.alpha = 1
 			})
 		}
 
