@@ -324,45 +324,59 @@ extension AlingmentView: AlingmentItemViewDelegate {
 
 	// MARK: Bounce Animation
 	fileprivate func bounceAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
-
+       
+        let koefPhaseOne: CGFloat = 0.65
+        let koefPhaseTwo: CGFloat = 0.28
+        let koefPhaseThree: CGFloat = 0.02
+        
 		switch view.direction {
 		case .Horizontal:
-
+            // Определяем направление движения слева на право
+            let fromLeftToRightAction = frame.middle.midX > horizontalMiddleWard.frame.midX
+            let firstPhaseDistance  = frame.middle.width * koefPhaseOne
+            let secondPhaseDistance = frame.middle.width * koefPhaseTwo
+            let thirdPhaseDistance  = frame.middle.width * koefPhaseThree
+            
 			let positionXKeyframe = CAKeyframeAnimation(keyPath: "position.x")
-			positionXKeyframe.values = [horizontalMiddleWard.frame.origin.x,
-										frame.middle.origin.x,
-										frame.middle.origin.x - (frame.middle.width * 0.65),
-										frame.middle.origin.x,
-										frame.middle.origin.x - (frame.middle.width * 0.28),
-										frame.middle.origin.x,
-										frame.middle.origin.x - (frame.middle.width * 0.02),
-										frame.middle.origin.x]
-			positionXKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
-			positionXKeyframe.duration = 1
-			//			positionXKeyframe.fillMode = .forwards
-			positionXKeyframe.timingFunctions = timingFunctions()
-			//			positionXKeyframe.isRemovedOnCompletion = false
+            positionXKeyframe.values = [horizontalMiddleWard.frame.midX,
+										frame.middle.midX,
+                                        frame.middle.midX + (fromLeftToRightAction ? -firstPhaseDistance : firstPhaseDistance),
+                                        frame.middle.midX,
+                                        frame.middle.midX + (fromLeftToRightAction ? -secondPhaseDistance : secondPhaseDistance),
+                                        frame.middle.midX,
+                                        frame.middle.midX + (fromLeftToRightAction ? -thirdPhaseDistance : thirdPhaseDistance),
+										frame.middle.midX]
+			positionXKeyframe.keyTimes = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
+            positionXKeyframe.duration = 1
+            positionXKeyframe.calculationMode = .cubic
+        
+            positionXKeyframe.timingFunctions = timingFunctions()
+                        positionXKeyframe.isRemovedOnCompletion = false
 
 			horizontalMiddleWard.layer.add(positionXKeyframe, forKey: "horizontalMiddleWard")
 			horizontalMiddleWard.layer.frame = frame.middle
 
 			DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
 
+                let firstPhaseDistance  = frame.short.width * koefPhaseOne
+                let secondPhaseDistance = frame.short.width * koefPhaseTwo
+                let thirdPhaseDistance  = frame.short.width * koefPhaseThree
+                
 				let positionXKeyframe = CAKeyframeAnimation(keyPath: "position.x")
-				positionXKeyframe.values = [self.horizontalShortWard.frame.origin.x,
-											frame.short.origin.x,
-											frame.short.origin.x - (frame.middle.width * 0.65),
-											frame.short.origin.x,
-											frame.short.origin.x - (frame.middle.width * 0.28),
-											frame.short.origin.x,
-											frame.short.origin.x - (frame.middle.width * 0.02),
-											frame.short.origin.x]
-				positionXKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
+				positionXKeyframe.values = [self.horizontalShortWard.frame.midX,
+											frame.short.midX,
+											frame.short.midX + (fromLeftToRightAction ? -firstPhaseDistance : firstPhaseDistance),
+											frame.short.midX,
+											frame.short.midX + (fromLeftToRightAction ? -secondPhaseDistance : secondPhaseDistance),
+											frame.short.midX,
+											frame.short.midX + (fromLeftToRightAction ? -thirdPhaseDistance : thirdPhaseDistance),
+											frame.short.midX]
+				positionXKeyframe.keyTimes = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
 				positionXKeyframe.duration = 1
 				//				positionXKeyframe.fillMode = .forwards
 				positionXKeyframe.timingFunctions = self.timingFunctions()
-				//				positionXKeyframe.isRemovedOnCompletion = false
-
+                positionXKeyframe.isRemovedOnCompletion = false
+                positionXKeyframe.calculationMode = .cubic
 				self.horizontalShortWard.layer.add(positionXKeyframe, forKey: "horizontalShortWard")
 				self.horizontalShortWard.layer.frame = frame.short
 
