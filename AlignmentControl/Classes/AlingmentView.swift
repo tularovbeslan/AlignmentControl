@@ -28,6 +28,7 @@ open class AlingmentView: UIView {
 	private var horizontalShortWard: UIView!
 	private var verticalMiddleWard: UIView!
 	private var verticalShortWard: UIView!
+	fileprivate var currentVerticalIndex: Int = 0
 
 	private var items: [AlingmentItemView] = []
 
@@ -267,14 +268,16 @@ extension AlingmentView: AlingmentItemViewDelegate {
 
 	// MARK: - Transition Animation
 	fileprivate func transitionAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
-
 		switch view.direction {
 		case .Horizontal:
 			Animator.translation([frame.middle, frame.short],
 								 views: [horizontalMiddleWard, horizontalShortWard], direction: .Horizontal)
 		case .Vertical:
+
+			let revers = view.index < currentVerticalIndex
 			Animator.translation([frame.middle, frame.short],
-								 views: [verticalMiddleWard, verticalShortWard], direction: .Vertical)
+								 views: [verticalMiddleWard, verticalShortWard], direction: .Vertical, revers:  revers)
+			currentVerticalIndex = view.index
 		}
 	}
 
