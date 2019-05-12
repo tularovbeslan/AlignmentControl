@@ -331,8 +331,8 @@ extension AlingmentView: AlingmentItemViewDelegate {
         
 		switch view.direction {
 		case .Horizontal:
-            // Определяем направление движения слева на право
-            let fromLeftToRightAction = frame.middle.midX > horizontalMiddleWard.frame.midX
+
+			let fromLeftToRightAction = frame.middle.midX > horizontalMiddleWard.frame.midX
             let firstPhaseDistance  = frame.middle.width * koefPhaseOne
             let secondPhaseDistance = frame.middle.width * koefPhaseTwo
             let thirdPhaseDistance  = frame.middle.width * koefPhaseThree
@@ -346,12 +346,11 @@ extension AlingmentView: AlingmentItemViewDelegate {
                                         frame.middle.midX,
                                         frame.middle.midX + (fromLeftToRightAction ? -thirdPhaseDistance : thirdPhaseDistance),
 										frame.middle.midX]
-			positionXKeyframe.keyTimes = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
+			positionXKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
             positionXKeyframe.duration = 1
-            positionXKeyframe.calculationMode = .cubic
-        
+
             positionXKeyframe.timingFunctions = timingFunctions()
-                        positionXKeyframe.isRemovedOnCompletion = false
+			positionXKeyframe.isRemovedOnCompletion = false
 
 			horizontalMiddleWard.layer.add(positionXKeyframe, forKey: "horizontalMiddleWard")
 			horizontalMiddleWard.layer.frame = frame.middle
@@ -371,12 +370,10 @@ extension AlingmentView: AlingmentItemViewDelegate {
 											frame.short.midX,
 											frame.short.midX + (fromLeftToRightAction ? -thirdPhaseDistance : thirdPhaseDistance),
 											frame.short.midX]
-				positionXKeyframe.keyTimes = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1]
+				positionXKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
 				positionXKeyframe.duration = 1
-				//				positionXKeyframe.fillMode = .forwards
 				positionXKeyframe.timingFunctions = self.timingFunctions()
                 positionXKeyframe.isRemovedOnCompletion = false
-                positionXKeyframe.calculationMode = .cubic
 				self.horizontalShortWard.layer.add(positionXKeyframe, forKey: "horizontalShortWard")
 				self.horizontalShortWard.layer.frame = frame.short
 
@@ -384,18 +381,22 @@ extension AlingmentView: AlingmentItemViewDelegate {
 
 		case .Vertical:
 
+			let firstPhaseDistance  = frame.middle.height * koefPhaseOne
+			let secondPhaseDistance = frame.middle.height * koefPhaseTwo
+			let thirdPhaseDistance  = frame.middle.height * koefPhaseThree
+
 			let positionYKeyframe = CAKeyframeAnimation(keyPath: "position.y")
-			positionYKeyframe.values = [verticalMiddleWard.frame.origin.y - (verticalMiddleWard.frame.height + 50),
-										frame.middle.origin.y,
-										frame.middle.origin.y - (frame.middle.width * 0.65),
-										frame.middle.origin.y,
-										frame.middle.origin.y - (frame.middle.width * 0.28),
-										frame.middle.origin.y,
-										frame.middle.origin.y - (frame.middle.width * 0.02),
-										frame.middle.origin.y]
+			positionYKeyframe.values = [verticalMiddleWard.frame.midY - self.frame.height,
+										frame.middle.midY,
+										frame.middle.midY + -firstPhaseDistance,
+										frame.middle.midY,
+										frame.middle.midY + -secondPhaseDistance,
+										frame.middle.midY,
+										frame.middle.midY + -thirdPhaseDistance,
+										frame.middle.midY]
 			positionYKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
 			positionYKeyframe.duration = 1
-			positionYKeyframe.fillMode = .forwards
+
 			positionYKeyframe.timingFunctions = timingFunctions()
 			positionYKeyframe.isRemovedOnCompletion = false
 
@@ -405,17 +406,20 @@ extension AlingmentView: AlingmentItemViewDelegate {
 			DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
 
 				let positionYKeyframe = CAKeyframeAnimation(keyPath: "position.y")
-				positionYKeyframe.values = [self.verticalShortWard.frame.origin.y - (self.verticalShortWard.frame.height + 50),
-											frame.short.origin.y,
-											frame.short.origin.y - (frame.short.width * 0.65),
-											frame.short.origin.y,
-											frame.short.origin.y - (frame.short.width * 0.28),
-											frame.short.origin.y,
-											frame.short.origin.y - (frame.short.width * 0.02),
-											frame.short.origin.y]
+				let firstPhaseDistance  = frame.short.height * koefPhaseOne
+				let secondPhaseDistance = frame.short.height * koefPhaseTwo
+				let thirdPhaseDistance  = frame.short.height * koefPhaseThree
+
+				positionYKeyframe.values = [self.verticalShortWard.frame.midY - self.frame.height,
+											frame.short.midY,
+											frame.short.midY + -firstPhaseDistance,
+											frame.short.midY,
+											frame.short.midY + -secondPhaseDistance,
+											frame.short.midY,
+											frame.short.midY + -thirdPhaseDistance,
+											frame.short.midY]
 				positionYKeyframe.keyTimes = [0, 0.38, 0.55, 0.72, 0.81, 0.90, 0.95, 1]
 				positionYKeyframe.duration = 1
-				positionYKeyframe.fillMode = .forwards
 				positionYKeyframe.timingFunctions = self.timingFunctions()
 				positionYKeyframe.isRemovedOnCompletion = false
 
