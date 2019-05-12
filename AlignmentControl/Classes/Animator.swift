@@ -116,7 +116,7 @@ class Animator {
 				let hide = CABasicAnimation(keyPath: positionYKeyPath)
 				hide.fromValue = view.frame.midY
 				hide.toValue =  frames[index].midY + (view.frame.height * 3)
-				hide.duration = 0.25
+				hide.duration = 0.15
 				hide.isRemovedOnCompletion = false
 				hide.fillMode = .forwards
 
@@ -124,7 +124,7 @@ class Animator {
 				positionX.fromValue = view.frame.midX
 				positionX.toValue =  frames[index].midX
 				positionX.beginTime = hide.duration
-				positionX.duration = 0.1
+				positionX.duration = 0.01
 				positionX.isRemovedOnCompletion = false
 				positionX.fillMode = .forwards
 
@@ -132,7 +132,7 @@ class Animator {
 				show.fromValue = view.frame.midY - (view.frame.height * 3)
 				show.toValue =  frames[index].midY
 				show.beginTime = positionX.duration + hide.duration
-				show.duration = 0.25
+				show.duration = 0.15
 				show.isRemovedOnCompletion = false
 				show.fillMode = .forwards
 
@@ -149,5 +149,17 @@ class Animator {
 
 	static func bounce() {
 
+	}
+
+	fileprivate func timingFunctions() -> [CAMediaTimingFunction]? {
+
+		return [CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn),
+				CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)]
 	}
 }
