@@ -9,9 +9,11 @@ import Foundation
 
 class Animator {
 
-	static func none() {
+	static func none(_ frames: [CGRect], views: [UIView]) {
 
-
+		for (index, view) in views.enumerated() {
+			view.layer.frame = frames[index]
+		}
 	}
 
 	static func fade(_ frames: [CGRect], views: [UIView]) {

@@ -251,25 +251,22 @@ extension AlingmentView: AlingmentItemViewDelegate {
 		}
 	}
 
+	// MARK: - None Animation
 	fileprivate func noneAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
 
 		guard let frame = frameForWards(view) else { return }
 
-		if horizontalMiddleWard.frame != frame.middle {
-
-			switch view.direction {
-			case .Horizontal:
-				horizontalMiddleWard.frame = frame.middle
-				horizontalShortWard.frame = frame.short
-
-			case .Vertical:
-				verticalMiddleWard.frame = frame.middle
-				verticalShortWard.frame = frame.short
-			}
+		switch view.direction {
+		case .Horizontal:
+			Animator.none([frame.middle, frame.short],
+						  views: [horizontalMiddleWard, horizontalShortWard])
+		case .Vertical:
+			Animator.none([frame.middle, frame.short],
+						  views: [verticalMiddleWard, verticalShortWard])
 		}
 	}
 
-	// MARK: Fade Animation
+	// MARK: - Fade Animation
 	fileprivate func fadeAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
 
 		guard let frame = frameForWards(view) else { return }
@@ -284,7 +281,7 @@ extension AlingmentView: AlingmentItemViewDelegate {
 		}
 	}
 
-	// MARK: Transition Animation
+	// MARK: - Transition Animation
 	fileprivate func transitionAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
 
 		switch view.direction {
@@ -303,7 +300,7 @@ extension AlingmentView: AlingmentItemViewDelegate {
 		}
 	}
 
-	// MARK: Bounce Animation
+	// MARK: - Bounce Animation
 	fileprivate func bounceAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
        
         let koefPhaseOne: CGFloat = 0.65
