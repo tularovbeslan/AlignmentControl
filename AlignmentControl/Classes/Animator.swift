@@ -67,8 +67,60 @@ class Animator {
 		}
 	}
 
-	static func translation() {
+	static func translation(_ frames: [CGRect], views: [UIView], direction: AlignmentDirection) {
 
+		switch direction {
+		case .Horizontal:
+			for (index, view) in views.enumerated() {
+
+				let positionXKeyPath = "position.x"
+
+				let positionX = CABasicAnimation(keyPath: positionXKeyPath)
+				positionX.fromValue = view.frame.midX
+				positionX.toValue =  frames[index].midX
+				positionX.duration = 0.15
+
+				view.layer.add(positionX, forKey: nil)
+				view.layer.frame = frames[index]
+			}
+		case .Vertical:
+			for (index, view) in views.enumerated() {
+
+				let positionXKeyPath = "position.x"
+				let positionYKeyPath = "position.y"
+
+				let hide = CABasicAnimation(keyPath: positionYKeyPath)
+				hide.fromValue = view.frame.midY
+				hide.toValue =  frames[index].midY + (view.frame.height * 3)
+				hide.duration = 0.25
+				hide.isRemovedOnCompletion = false
+				hide.fillMode = .forwards
+
+				let positionX = CABasicAnimation(keyPath: positionXKeyPath)
+				positionX.fromValue = view.frame.midX
+				positionX.toValue =  frames[index].midX
+				positionX.beginTime = hide.duration
+				positionX.duration = 0.1
+				positionX.isRemovedOnCompletion = false
+				positionX.fillMode = .forwards
+
+				let show = CABasicAnimation(keyPath: positionYKeyPath)
+				show.fromValue = view.frame.midY - (view.frame.height * 3)
+				show.toValue =  frames[index].midY
+				show.beginTime = positionX.duration + hide.duration
+				show.duration = 0.25
+				show.isRemovedOnCompletion = false
+				show.fillMode = .forwards
+
+				let group = CAAnimationGroup()
+				group.animations = [hide, positionX, show]
+				group.duration = hide.duration + positionX.duration + show.duration
+				group.isRemovedOnCompletion = false
+				group.fillMode = .forwards
+
+				view.layer.add(group, forKey: nil)
+			}
+		}
 	}
 
 	static func bounce() {

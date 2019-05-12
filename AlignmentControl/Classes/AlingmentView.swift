@@ -286,17 +286,11 @@ extension AlingmentView: AlingmentItemViewDelegate {
 
 		switch view.direction {
 		case .Horizontal:
-
-			UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseInOut], animations: {
-				self.horizontalMiddleWard.frame = frame.middle
-				UIView.animate(withDuration: 0.25, delay: 0.1, options: [.curveEaseInOut], animations: {
-					self.horizontalShortWard.frame = frame.short
-				}, completion: nil)
-			}, completion: nil)
-
+			Animator.translation([frame.middle, frame.short],
+								 views: [horizontalMiddleWard, horizontalShortWard], direction: .Horizontal)
 		case .Vertical:
-
-			print("ljh")
+			Animator.translation([frame.middle, frame.short],
+								 views: [verticalMiddleWard, verticalShortWard], direction: .Vertical)
 		}
 	}
 
