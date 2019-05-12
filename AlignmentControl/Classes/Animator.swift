@@ -9,6 +9,30 @@ import Foundation
 
 class Animator {
 
+	static func zoomIn(_ view: UIView) {
+
+		let animation = CABasicAnimation(keyPath: "transform.scale")
+		animation.fromValue = 1.0
+		animation.toValue = 0.98
+		animation.duration = 0.3
+		animation.fillMode = .forwards
+		animation.isRemovedOnCompletion = false
+		animation.autoreverses = false
+		view.layer.add(animation, forKey: "zoomIn")
+	}
+
+	static func zoomOut(_ view: UIView) {
+
+		let animation = CABasicAnimation(keyPath: "transform.scale")
+		animation.fromValue = 0.98
+		animation.toValue = 1.0
+		animation.duration = 0.3
+		animation.fillMode = .forwards
+		animation.isRemovedOnCompletion = false
+		animation.autoreverses = false
+		view.layer.add(animation, forKey: "zoomOut")
+	}
+
 	static func none(_ frames: [CGRect], views: [UIView]) {
 
 		for (index, view) in views.enumerated() {

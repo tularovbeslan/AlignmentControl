@@ -132,27 +132,11 @@ open class AlingmentView: UIView {
 	// MARK: - Private
 
 	func zoomIn() {
-
-		let animation = CABasicAnimation(keyPath: "transform.scale")
-		animation.fromValue = 1.0
-		animation.toValue = 0.98
-		animation.duration = 0.3
-		animation.fillMode = .forwards
-		animation.isRemovedOnCompletion = false
-		animation.autoreverses = false
-		layer.add(animation, forKey: "zoomIn")
+		Animator.zoomIn(self)
 	}
 
 	func zoomOut() {
-
-		let animation = CABasicAnimation(keyPath: "transform.scale")
-		animation.fromValue = 0.98
-		animation.toValue = 1.0
-		animation.duration = 0.3
-		animation.fillMode = .forwards
-		animation.isRemovedOnCompletion = false
-		animation.autoreverses = false
-		layer.add(animation, forKey: "zoomOut")
+		Animator.zoomOut(self)
 	}
 
 	fileprivate func setupBackgroundImageConstraints() {
