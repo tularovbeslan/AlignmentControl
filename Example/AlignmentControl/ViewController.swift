@@ -34,7 +34,7 @@ class ViewController: UIViewController {
 		alignView.setBackgroundImage(UIImage(named: "group"))
 		alignView.delegate = self
 		alignView.dataSource = self
-		alignView.animation = .Translation
+		alignView.animation = .Bounce
 		alignView.activeAligmentModes = [.Left, .Top]
 		alignView.isPulse = false
 
