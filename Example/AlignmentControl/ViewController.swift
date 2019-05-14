@@ -12,7 +12,7 @@ import AlignmentControl
 class ViewController: UIViewController {
 
 	@IBOutlet weak var alignView: AlingmentView!
-	
+
 	var contentView: UIView!
 	var redView: UIView!
 
@@ -28,20 +28,22 @@ class ViewController: UIViewController {
 		return contentView.frame.height - padding
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-        alignView.colorOfWards = UIColor(red: 204/255.0, green: 204/255.0, blue: 204/255.0, alpha: 1)
-        alignView.activeColorOfWards = UIColor(red: 102/255.0, green: 51/255.0, blue: 204/255.0, alpha: 1)
 		alignView.setBackgroundImage(UIImage(named: "group"))
-        alignView.delegate = self
+		alignView.delegate = self
 		alignView.dataSource = self
+		alignView.animation = .Bounce
+		alignView.activeAligmentModes = [.Left, .Top]
+		alignView.isPulse = false
+
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
- 		contentViewSetup()
+		contentViewSetup()
 		generatePositions()
 		redViewSetup()
 	}
@@ -71,22 +73,26 @@ class ViewController: UIViewController {
 									   width: width / 3,
 									   height: height / 3))
 		redView.layer.cornerRadius = 20
-		redView.backgroundColor = UIColor(red: 255/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
+		redView.backgroundColor = .red
 		redView.clipsToBounds = true
 		contentView.addSubview(redView)
 	}
 
 	fileprivate func generatePositions() {
-        
-		for i in 0..<3 {
 
-			let y = ((height / 3 + 10) * CGFloat(i)) + 10
-			for j in 0..<3 {
-				let x = ((width / 3 + 10) * CGFloat(j)) + 10
+		let column: Int = 3
+		let row: Int = 3
+		let pagging: CGFloat = 10
+
+		for i in 0..<column {
+
+			let y = ((height / CGFloat(column) + pagging) * CGFloat(i)) + pagging
+			for j in 0..<row {
+				let x = ((width / CGFloat(row) + pagging) * CGFloat(j)) + pagging
 				let view = UIView(frame: CGRect(x: x,
 												y: y,
-												width: width / 3,
-												height: height / 3))
+												width: width / CGFloat(row),
+												height: height / CGFloat(row)))
 				view.backgroundColor = UIColor.init(red: 239/255.0, green: 240/255.0, blue: 246/255.0, alpha: 0.6)
 				view.layer.cornerRadius = 20
 				view.clipsToBounds = true
@@ -94,49 +100,48 @@ class ViewController: UIViewController {
 			}
 		}
 	}
-    
-    fileprivate func applyAnimation() {
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 0.7,
-                       options: [.curveEaseOut],
-                       animations: {
-                        self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
-                        
-        }, completion: nil)
-    }
+
+	fileprivate func applyAnimation() {
+
+		UIView.animate(withDuration: 0.3,
+					   delay: 0,
+					   usingSpringWithDamping: 0.7,
+					   initialSpringVelocity: 0.7,
+					   options: [.curveEaseOut],
+					   animations: {
+						self.redView.transform = CGAffineTransform(translationX: self.axisX, y: self.axisY)
+		}, completion: nil)
+	}
 }
 
 extension ViewController: AlingmentViewDelegate {
-    
-	func didSelectOptionFor(_ aligment: AlignmentMode) {
-        
-		switch aligment {
+
+	func didSelectOptionFor(_ mode: AlignmentMode) {
+
+		switch mode {
 		case .Left:
 			axisX = 0
-            applyAnimation()
-            
+			applyAnimation()
+
 		case .Center:
 			axisX = (width / 2) -  (self.redView.frame.width / 2) + 10
 			applyAnimation()
-            
+
 		case .Right:
 			axisX = width - self.redView.frame.width + 20
 			applyAnimation()
-            
+
 		case .Top:
 			axisY = 0
 			applyAnimation()
-            
+
 		case .Middle:
 			axisY = (height / 2) -  (self.redView.frame.height / 2) + 10
-            applyAnimation()
-            
+			applyAnimation()
+
 		case .Bottom:
 			axisY = height - self.redView.frame.height + 20
-            applyAnimation()
+			applyAnimation()
 		}
 	}
 }

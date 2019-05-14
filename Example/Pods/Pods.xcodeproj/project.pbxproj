@@ -11,13 +11,13 @@
 		28DCD295D7867CDDC8AE633803BA80F8 /* Pods-AlignmentControl_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC68062935618F83643B308886F4C75 /* Pods-AlignmentControl_Tests-dummy.m */; };
 		3C428CB40E447799317941F0640A9D51 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
 		3F0FD143F16D8E2FBA97B8286E7B50FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
+		577E50342287B5B10011074F /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577E50332287B5B10011074F /* Animator.swift */; };
 		57E6523E2266461700524487 /* AlingmentItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6523D2266461700524487 /* AlingmentItemView.swift */; };
 		57E652402266462D00524487 /* AlingmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6523F2266462D00524487 /* AlingmentView.swift */; };
 		61A535E3A0811D92677773F772B63205 /* Pods-AlignmentControl_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BED471D705955CA97335A123CE18D0D /* Pods-AlignmentControl_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		747F36B15710889CE3074A87245E5657 /* AlignmentControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30B1C193D37A7C3F26BF9A5AD0BD5F76 /* AlignmentControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A6BE426FCEBA7F0088AABD758466E96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */; };
 		CB8F8EAE22C6CBE975CE9E24E0B68567 /* Pods-AlignmentControl_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCAE502F0231E8A943106C88DE27FF /* Pods-AlignmentControl_Example-dummy.m */; };
-		CC20AD9F227C761A00EE586E /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC20AD9E227C761A00EE586E /* Animator.swift */; };
 		D8A1B900181956426AF275C13C4BC358 /* Pods-AlignmentControl_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04911C8D196C1FA3BBD07BD0EA6FE3D4 /* Pods-AlignmentControl_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -48,6 +48,7 @@
 		3F56203017D023D59D65BADC9F18530E /* Pods-AlignmentControl_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlignmentControl_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		462B44798392476F61816E05593CE706 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5487144011D2D37B590C34AA5EE9EC89 /* Pods-AlignmentControl_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlignmentControl_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		577E50332287B5B10011074F /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		57E6523D2266461700524487 /* AlingmentItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlingmentItemView.swift; sourceTree = "<group>"; };
 		57E6523F2266462D00524487 /* AlingmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlingmentView.swift; sourceTree = "<group>"; };
 		66C15A60629494A511EC629DB5128747 /* Pods-AlignmentControl_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlignmentControl_Tests.modulemap"; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		BD42A73B17B1407E9EA2B280D3E73BCC /* Pods-AlignmentControl_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlignmentControl_Example.release.xcconfig"; sourceTree = "<group>"; };
 		CB4607EFCA7C5F75397649E792E2AFCB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CB5948E7230FB995E67C768B73DB1EA1 /* AlignmentControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlignmentControl.modulemap; sourceTree = "<group>"; };
-		CC20AD9E227C761A00EE586E /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		CDC68062935618F83643B308886F4C75 /* Pods-AlignmentControl_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlignmentControl_Tests-dummy.m"; sourceTree = "<group>"; };
 		D9537DF7868BE17008504622927EE935 /* Pods-AlignmentControl_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlignmentControl_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		DE21009A6A5A5AEABB598DBDBDBBCBDA /* Pods_AlignmentControl_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlignmentControl_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,9 +183,9 @@
 		57E6523C2266435C00524487 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CC20AD9D227C760700EE586E /* Animator */,
 				57E6523F2266462D00524487 /* AlingmentView.swift */,
 				57E6523D2266461700524487 /* AlingmentItemView.swift */,
+				577E50332287B5B10011074F /* Animator.swift */,
 			);
 			name = Classes;
 			path = AlignmentControl/Classes;
@@ -224,14 +224,6 @@
 				47C9D7C1AF81DEBBFCFCE9EDE93BD7F9 /* Pods-AlignmentControl_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		CC20AD9D227C760700EE586E /* Animator */ = {
-			isa = PBXGroup;
-			children = (
-				CC20AD9E227C761A00EE586E /* Animator.swift */,
-			);
-			path = Animator;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -411,7 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC20AD9F227C761A00EE586E /* Animator.swift in Sources */,
+				577E50342287B5B10011074F /* Animator.swift in Sources */,
 				1351DB9B61C4CD0858FE59FA013D1B43 /* AlignmentControl-dummy.m in Sources */,
 				57E652402266462D00524487 /* AlingmentView.swift in Sources */,
 				57E6523E2266461700524487 /* AlingmentItemView.swift in Sources */,
