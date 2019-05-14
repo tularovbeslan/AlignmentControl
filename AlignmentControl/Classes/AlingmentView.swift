@@ -283,13 +283,13 @@ extension AlingmentView: AlingmentItemViewDelegate {
 	// MARK: - Bounce Animation
 	fileprivate func bounceAnimation(_ frame: (middle: CGRect, short: CGRect), view: AlingmentItemView) {
 
-		let revers = view.index < currentVerticalIndex
+		let revers = view.index > currentVerticalIndex
 
 		switch view.direction {
 		case .Horizontal:
 			Animator.bounce([frame.middle, frame.short],
 							views: [horizontalMiddleWard, horizontalShortWard],
-							direction: .Horizontal, revers:  revers)
+							direction: .Horizontal)
 		case .Vertical:
 
 			Animator.bounce([frame.middle, frame.short],

@@ -186,8 +186,6 @@ public class Animator {
 
 			for (index, view) in views.enumerated() {
 
-				let revers = frames[index].midX > view.frame.midX
-
 				let toValue = revers ? frames[index].midY + (view.frame.height * 3) : frames[index].midY - (view.frame.height * 3)
 				let fromValue = revers ? view.frame.midY - (view.frame.height * 3) : view.frame.midY + (view.frame.height * 3)
 
@@ -232,7 +230,6 @@ public class Animator {
 				group.fillMode = .forwards
 
 				view.layer.add(group, forKey: nil)
-				view.layer.frame = frames[index]
 			}
 		}
 	}
