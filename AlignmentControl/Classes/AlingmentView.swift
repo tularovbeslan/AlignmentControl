@@ -97,12 +97,14 @@ open class AlingmentView: UIView {
 		setupBackgroundImageConstraints()
 		setupItems()
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
-			self.createActiveWards()
+		if !frame.isEmpty {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+				self.createActiveWards()
+			}
 		}
 	}
 
-	override init(frame: CGRect) {
+	public override init(frame: CGRect) {
 		super.init(frame: frame)
 
 		self.clipsToBounds = true
@@ -110,17 +112,17 @@ open class AlingmentView: UIView {
 		setupBackgroundImageConstraints()
 		setupItems()
 
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
-			self.createActiveWards()
+		if !frame.isEmpty {
+
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+				self.createActiveWards()
+			}
 		}
 	}
 
-	private convenience init() {
-		self.init()
-	}
+	convenience init(activeAligmentModes: [AlignmentMode], animation: AnimationType, frame: CGRect) {
+		self.init(frame: frame)
 
-	convenience init(activeAligmentModes: [AlignmentMode], animation: AnimationType) {
-		self.init()
 		self.activeAligmentModes = activeAligmentModes
 		self.animation = animation
 	}
@@ -270,12 +272,12 @@ extension AlingmentView: AlingmentItemViewDelegate {
 		switch view.direction {
 		case .Horizontal:
 			Animator.translation([frame.middle, frame.short],
-								 views: [horizontalMiddleWard, horizontalShortWard], direction: .Horizontal)
+								 views: [horizontalMiddleWard, horizontalShortWard], direction: .Horizontal, contentView: self)
 		case .Vertical:
 
 			let revers = view.index < currentVerticalIndex
 			Animator.translation([frame.middle, frame.short],
-								 views: [verticalMiddleWard, verticalShortWard], direction: .Vertical, revers:  revers)
+								 views: [verticalMiddleWard, verticalShortWard], direction: .Vertical, revers:  revers, contentView: self)
 			currentVerticalIndex = view.index
 		}
 	}
@@ -289,12 +291,12 @@ extension AlingmentView: AlingmentItemViewDelegate {
 		case .Horizontal:
 			Animator.bounce([frame.middle, frame.short],
 							views: [horizontalMiddleWard, horizontalShortWard],
-							direction: .Horizontal)
+							direction: .Horizontal, contentView: self)
 		case .Vertical:
 
 			Animator.bounce([frame.middle, frame.short],
 							views: [verticalMiddleWard, verticalShortWard],
-							direction: .Vertical, revers:  revers)
+							direction: .Vertical, revers:  revers, contentView: self)
 			currentVerticalIndex = view.index
 		}
 	}

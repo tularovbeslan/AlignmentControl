@@ -31,13 +31,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		alignView.setBackgroundImage(UIImage(named: "group"))
-		alignView.delegate = self
-		alignView.dataSource = self
-		alignView.animation = .Bounce
-		alignView.activeAligmentModes = [.Left, .Top]
-		alignView.isPulse = false
-
+		setupAlingmentView()
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +40,16 @@ class ViewController: UIViewController {
 		contentViewSetup()
 		generatePositions()
 		redViewSetup()
+	}
+
+	fileprivate func setupAlingmentView() {
+
+		alignView.setBackgroundImage(UIImage(named: "group"))
+		alignView.delegate = self
+		alignView.dataSource = self
+		alignView.animation = .None
+		alignView.activeAligmentModes = [.Left, .Top]
+		alignView.isPulse = false
 	}
 
 	fileprivate func contentViewSetup() {

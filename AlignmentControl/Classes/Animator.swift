@@ -91,7 +91,7 @@ public class Animator {
 		}
 	}
 
-	public static func translation(_ frames: [CGRect], views: [UIView], direction: AlignmentDirection, revers: Bool = false) {
+	public static func translation(_ frames: [CGRect], views: [UIView], direction: AlignmentDirection, revers: Bool = false, contentView: UIView) {
 
 		switch direction {
 		case .Horizontal:
@@ -113,8 +113,8 @@ public class Animator {
 
 				let positionXKeyPath = "position.x"
 				let positionYKeyPath = "position.y"
-				let fromValue = revers ? frames[index].midY + (view.frame.height * 3) : frames[index].midY - (view.frame.height * 3)
-				let toValue = revers ? view.frame.midY - (view.frame.height * 3) : view.frame.midY + (view.frame.height * 3)
+				let fromValue = revers ? frames[index].midY + contentView.frame.height : frames[index].midY - contentView.frame.height
+				let toValue = revers ? view.frame.midY - contentView.frame.height : view.frame.midY + contentView.frame.height
 
 				let hide = CABasicAnimation(keyPath: positionYKeyPath)
 				hide.fromValue = view.frame.midY
@@ -150,7 +150,7 @@ public class Animator {
 		}
 	}
 
-	public static func bounce(_ frames: [CGRect], views: [UIView], direction: AlignmentDirection, revers: Bool = false) {
+	public static func bounce(_ frames: [CGRect], views: [UIView], direction: AlignmentDirection, revers: Bool = false, contentView: UIView) {
 
 		let phases: (first: CGFloat, second: CGFloat, third: CGFloat) = (0.65, 0.28, 0.02)
 
@@ -186,8 +186,8 @@ public class Animator {
 
 			for (index, view) in views.enumerated() {
 
-				let toValue = revers ? frames[index].midY + (view.frame.height * 3) : frames[index].midY - (view.frame.height * 3)
-				let fromValue = revers ? view.frame.midY - (view.frame.height * 3) : view.frame.midY + (view.frame.height * 3)
+				let toValue = revers ? frames[index].midY + contentView.frame.height : frames[index].midY - contentView.frame.height
+				let fromValue = revers ? view.frame.midY - contentView.frame.height : view.frame.midY + contentView.frame.height
 
 
 				let distance: (first: CGFloat, second: CGFloat, third: CGFloat) = (frames[index].height * phases.first, frames[index].height * phases.second, frames[index].height * phases.third)
